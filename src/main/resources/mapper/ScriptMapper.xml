@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.script.scriptreservation.dao.ScriptMapper">
+  <resultMap id="BaseResultMap" type="com.script.scriptreservation.po.Script">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="category_id" jdbcType="VARCHAR" property="categoryId" />
+    <result column="script_name" jdbcType="VARCHAR" property="scriptName" />
+    <result column="script_context" jdbcType="VARCHAR" property="scriptContext" />
+    <result column="look_number" jdbcType="INTEGER" property="lookNumber" />
+    <result column="reply_number" jdbcType="INTEGER" property="replyNumber" />
+    <result column="pay_time" jdbcType="VARCHAR" property="payTime" />
+    <result column="photo_adress" jdbcType="VARCHAR" property="photoAdress" />
+    <result column="person_number" jdbcType="INTEGER" property="personNumber" />
+    <result column="game_time" jdbcType="VARCHAR" property="gameTime" />
+    <result column="lable" jdbcType="VARCHAR" property="lable" />
+    <result column="salenum" jdbcType="INTEGER" property="salenum" />
+    <result column="script_money" jdbcType="INTEGER" property="scriptMoney" />
+    <result column="level" jdbcType="INTEGER" property="level" />
+  </resultMap>
+</mapper>

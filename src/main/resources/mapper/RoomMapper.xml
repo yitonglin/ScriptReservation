@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.script.scriptreservation.dao.RoomMapper">
+  <resultMap id="BaseResultMap" type="com.script.scriptreservation.po.Room">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="has_number" jdbcType="INTEGER" property="hasNumber" />
+    <result column="need_number" jdbcType="INTEGER" property="needNumber" />
+  </resultMap>
+</mapper>
