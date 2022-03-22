@@ -2,10 +2,15 @@ package com.script.scriptreservation.controller;
 
 import com.script.scriptreservation.po.User;
 import com.script.scriptreservation.service.IUserService;
+import com.script.scriptreservation.utils.MoreUtils;
+import com.script.scriptreservation.utils.ValidateCodeUtil;
+import com.script.scriptreservation.vo.Result;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.util.UUID;
 
 @RestController
@@ -15,18 +20,86 @@ public class UserController {
     @Autowired
     private IUserService userService;
 
+    /***
+     * 注册接口
+     *
+     */
     @PostMapping("register")
-    public void register(){
+    public Result register(User user){
+        return userService.register(user);
+    }
+
+    /**
+     *
+     * 邮箱激活方法
+     * @param
+     * @return
+     */
+    @GetMapping("emailActive")
+    public String emailActive(int status,String emailAddress,String username){
+        //封装激活邮件的信息（邮箱，状态码）
         User user = new User();
-        user.setId(UUID.randomUUID().toString().replace("-", "").toUpperCase());
-        user.setUserName("ytl");
-        user.setPassword("123456");
-        user.setPhotoAdress("https://blog.csdn.net/zengqiang1/article/details/79381418?utm_source=blogkpcl6");
-        user.setStatus(0);
-        user.setEmail("meyitonglin@163.com");
-        user.setPhoneNumber("13271735031");
-        user.setMoney(1000);
-        userService.register(user);
+        if (status == 1){
+            user.setStatus(status);
+            user.setEmail(emailAddress);
+            user.setUserName(username);
+            userService.emailActive(user);
+            return "emailActive";
+        }else {
+            return "failEmailActive";
+        }
+
+    }
+
+    /**
+     * 登录接口
+     * @param user  用户信息
+     * @return 标准返回
+     */
+    @PostMapping("login")
+    public Result login(User user){
+        Result result = userService.login(user);
+        return result;
+    }
+
+    //验证码生成
+    @PostMapping("/getCaptchaImg")
+    public void getCaptchaImg(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+
+        try {
+            response.setContentType("image/png");
+            response.setHeader("Cache-Control", "no-cache");
+            response.setHeader("Expire", "0");
+            response.setHeader("Pragma", "no-cache");
+            ValidateCodeUtil validateCode = new ValidateCodeUtil();
+            // getRandomCodeImage方法会直接将生成的验证码图片写入response
+            validateCode.getRandomCodeImage(request, response);
+            // System.out.println("session里面存储的验证码为："+session.getAttribute("JCCODE"));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 验证码校验方法
+     * 先验证验证码  如果验证码验证失败的话则不请求登录接口
+     * @param code
+     * @param session
+     * @return
+     */
+    @PostMapping("/checkCaptcha")
+    public boolean getCheckCaptcha(@RequestParam("code") String code, HttpSession session) {
+        try {
+            //toLowerCase() 不区分大小写进行验证码校验
+            String sessionCode= String.valueOf(session.getAttribute("JCCODE")).toLowerCase();
+            System.out.println("session里的验证码："+sessionCode);
+            String receivedCode=code.toLowerCase();
+            System.out.println("用户的验证码："+receivedCode);
+            return !sessionCode.equals("") && !receivedCode.equals("") && sessionCode.equals(receivedCode);
+        } catch (Exception e) {
+            return false;
+        }
+
     }
 
 }

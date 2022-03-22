@@ -14,4 +14,21 @@
     <result column="phone_number" jdbcType="VARCHAR" property="phoneNumber" />
     <result column="money" jdbcType="INTEGER" property="money" />
   </resultMap>
+
+  <select id="getUserByUserName" parameterType="string" resultMap="BaseResultMap">
+      SELECT
+        *
+      FROM
+        `user`
+      WHERE
+        user_name = #{userName}
+  </select>
+
+  <update id="emailActive" parameterType="com.script.scriptreservation.po.User">
+      UPDATE `user`
+      SET STATUS = 1
+      WHERE
+        user_name = #{userName}
+  </update>
+
 </mapper>
