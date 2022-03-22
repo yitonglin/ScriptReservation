@@ -9,4 +9,7 @@ public interface IUserService {
     Result register(User user);
     Result login(User user);
     void emailActive(User user);
+    Result lookRecord(String id);
+    Result personalCollection(String id);
+    Result personalComments(String id);
 }

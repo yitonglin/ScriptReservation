@@ -20,6 +20,10 @@ public class UserController {
     @Autowired
     private IUserService userService;
 
+    /**
+     * ========================================================登录注册相关接口========================================================
+     */
+
     /***
      * 注册接口
      *
@@ -99,7 +103,50 @@ public class UserController {
         } catch (Exception e) {
             return false;
         }
-
     }
+
+    /**
+     * ========================================================个人中心相关接口========================================================
+     */
+
+
+    /**
+     * 个人浏览记录查询
+     * @param id
+     * @return
+     */
+    @PostMapping("lookRecord")
+    public Result lookRecord(String id){
+        return userService.lookRecord(id);
+    }
+
+    /**
+     * 个人收藏查询
+     * @param id
+     * @return
+     */
+    @PostMapping("personalCollection")
+    public Result personalCollection(String id){
+        return userService.personalCollection(id);
+    }
+
+    /**
+     * 个人评论查询
+     */
+    @PostMapping("personalComments")
+    public Result personalComments(String id){
+        return userService.personalComments(id);
+    }
+
+    /**
+     * 个人订单查询
+     */
+
+
+
+
+
+
+
 
 }

@@ -10,4 +10,16 @@
     <result column="time" jdbcType="VARCHAR" property="time" />
     <result column="user_id" jdbcType="VARCHAR" property="userId" />
   </resultMap>
+
+  <select id="lookRecord" parameterType="string" resultType="com.script.scriptreservation.vo.ScriptRecord">
+    SELECT
+      s.script_name AS scriptName,
+      r.time AS recordTime,
+      r.script_id AS scriptId
+    FROM
+      record r
+        LEFT JOIN script s ON r.script_id = s.id
+    WHERE
+      r.user_id = #{id}
+  </select>
 </mapper>

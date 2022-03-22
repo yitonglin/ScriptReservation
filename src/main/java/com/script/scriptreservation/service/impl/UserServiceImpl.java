@@ -1,12 +1,19 @@
 package com.script.scriptreservation.service.impl;
 
+import com.script.scriptreservation.dao.CollectionMapper;
+import com.script.scriptreservation.dao.CommentsMapper;
+import com.script.scriptreservation.dao.RecordMapper;
 import com.script.scriptreservation.dao.UserMapper;
 import com.script.scriptreservation.enums.ApplicationEnum;
+import com.script.scriptreservation.po.Record;
 import com.script.scriptreservation.po.User;
 import com.script.scriptreservation.service.IUserService;
 import com.script.scriptreservation.utils.MailUtils;
 import com.script.scriptreservation.utils.MoreUtils;
+import com.script.scriptreservation.vo.CollectionVo;
+import com.script.scriptreservation.vo.CommentsVo;
 import com.script.scriptreservation.vo.Result;
+import com.script.scriptreservation.vo.ScriptRecord;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +24,15 @@ public class UserServiceImpl implements IUserService {
 
     @Autowired
     private UserMapper userMapper;
+
+    @Autowired
+    private RecordMapper recordMapper;
+
+    @Autowired
+    private CollectionMapper collectionMapper;
+
+    @Autowired
+    private CommentsMapper commentsMapper;
 
     @Override
     public Result register(User user) {
@@ -71,4 +87,56 @@ public class UserServiceImpl implements IUserService {
     public void emailActive(User user) {
         userMapper.emailActive(user);
     }
+
+    @Override
+    public Result lookRecord(String id) {
+        Result result = new Result();
+        List<ScriptRecord> recordList = recordMapper.lookRecord(id);
+        result.setStatus(true);
+        result.setMsg("浏览记录查询成功");
+        result.setData(recordList);
+        result.setCode(ApplicationEnum.SUCCESS.getCode());
+        return result;
+    }
+
+    @Override
+    public Result personalCollection(String id) {
+        Result result = new Result();
+        List<CollectionVo> collectionVos = collectionMapper.personalCollection(id);
+        result.setStatus(true);
+        result.setMsg("剧本收藏查询成功");
+        result.setData(collectionVos);
+        result.setCode(ApplicationEnum.SUCCESS.getCode());
+        return result;
+    }
+
+    @Override
+    public Result personalComments(String id) {
+        Result result = new Result();
+        List<CommentsVo> commentsVos = commentsMapper.personalComments(id);
+        result.setStatus(true);
+        result.setMsg("个人评论查询成功");
+        result.setData(commentsVos);
+        result.setCode(ApplicationEnum.SUCCESS.getCode());
+        return result;
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
