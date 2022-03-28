@@ -86,6 +86,33 @@ public class Script {
     private Integer level;
 
     /**
+     * 点赞数
+     */
+    private Integer greatNum;
+
+    /**
+     * 点踩数
+     */
+    private Integer stepNum;
+
+
+    public Integer getGreatNum() {
+        return greatNum;
+    }
+
+    public void setGreatNum(Integer greatNum) {
+        this.greatNum = greatNum;
+    }
+
+    public Integer getStepNum() {
+        return stepNum;
+    }
+
+    public void setStepNum(Integer stepNum) {
+        this.stepNum = stepNum;
+    }
+
+    /**
      * 获取剧本主键ID
      *
      * @return id - 剧本主键ID

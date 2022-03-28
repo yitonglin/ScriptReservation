@@ -20,4 +20,31 @@
     <result column="script_money" jdbcType="INTEGER" property="scriptMoney" />
     <result column="level" jdbcType="INTEGER" property="level" />
   </resultMap>
+  <insert id="scriptCollection" parameterType="com.script.scriptreservation.dto.ScriptCollectionDto">
+    INSERT INTO collection ( id, user_id, script_id, collection_time )
+    VALUES
+    (
+      #{collectionId},
+      #{userId},
+      #{scriptId},
+      #{collectionTime}
+    )
+  </insert>
+
+
+  <update id="greatNumPlus" parameterType="string">
+    UPDATE `script`
+    SET great_num = great_num + 1
+    WHERE
+      id = #{id}
+  </update>
+
+  <update id="stepNum" parameterType="string">
+    UPDATE `script`
+    SET step_num = step_num + 1
+    WHERE
+      id = #{id}
+  </update>
+
+
 </mapper>

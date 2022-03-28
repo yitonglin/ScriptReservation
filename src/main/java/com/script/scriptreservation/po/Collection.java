@@ -23,6 +23,20 @@ public class Collection {
     private String userId;
 
     /**
+     * 收藏时间啊
+     */
+    @Column(name = "collection_time")
+    private Long collectionTime;
+
+    public Long getCollectionTime() {
+        return collectionTime;
+    }
+
+    public void setCollectionTime(Long collectionTime) {
+        this.collectionTime = collectionTime;
+    }
+
+    /**
      * 获取收藏ID
      *
      * @return id - 收藏ID
