@@ -3,6 +3,8 @@ package com.script.scriptreservation.service.impl;
 import com.script.scriptreservation.dao.ScriptMapper;
 import com.script.scriptreservation.dto.ScriptCollectionDto;
 import com.script.scriptreservation.enums.ApplicationEnum;
+import com.script.scriptreservation.po.Script;
+import com.script.scriptreservation.po.User;
 import com.script.scriptreservation.service.IScriptService;
 import com.script.scriptreservation.utils.MoreUtils;
 import com.script.scriptreservation.vo.Result;
@@ -51,6 +53,23 @@ public class ScriptServiceImpl implements IScriptService {
             result.setCode(ApplicationEnum.FAIT.getCode());
         }
 
+        return result;
+    }
+
+    @Override
+    public Result scriptInfo(String id) {
+        Result result = new Result();
+        Script script = scriptMapper.selectByPrimaryKey(id);
+        if ( script != null){
+            result.setStatus(true);
+            result.setMsg("剧本查询成功");
+            result.setCode(ApplicationEnum.SUCCESS.getCode());
+            result.setData(script);
+        } else {
+            result.setStatus(false);
+            result.setMsg("剧本查询失败");
+            result.setCode(ApplicationEnum.FAIT.getCode());
+        }
         return result;
     }
 

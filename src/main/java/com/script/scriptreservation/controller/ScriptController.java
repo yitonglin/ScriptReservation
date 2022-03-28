@@ -21,7 +21,7 @@ public class ScriptController {
      * @return
      */
     @PostMapping("GreatNumPlus")
-    private Result greatNumPlus(String id){
+    public Result greatNumPlus(String id){
         return scriptService.greatNumPlus(id);
     }
 
@@ -31,7 +31,7 @@ public class ScriptController {
      * @return
      */
     @PostMapping("stepNum")
-    private Result stepNum(String id){
+    public Result stepNum(String id){
         return scriptService.stepNum(id);
     }
 
@@ -40,8 +40,20 @@ public class ScriptController {
      * @return
      */
     @PostMapping("scriptCollection")
-    private Result scriptCollection(ScriptCollectionDto scriptCollectionDto){
+    public Result scriptCollection(ScriptCollectionDto scriptCollectionDto){
         return scriptService.scriptCollection(scriptCollectionDto);
     }
+
+    /**
+     * 剧本信息展示
+     * @param id
+     * @return
+     */
+    @PostMapping("scriptInfo")
+    public Result scriptInfo(String id){
+        return scriptService.scriptInfo(id);
+    }
+
+
 
 }

@@ -7,4 +7,5 @@ public interface IScriptService {
     Result greatNumPlus(String id);
     Result stepNum(String id);
     Result scriptCollection(ScriptCollectionDto scriptCollectionDto);
+    Result scriptInfo(String id);
 }
