@@ -30,5 +30,11 @@
       WHERE
         user_name = #{userName}
   </update>
+    <update id="updateUserPassword">
+        UPDATE `user`
+        SET password = #{password}
+        WHERE
+            id = #{id}
+    </update>
 
 </mapper>

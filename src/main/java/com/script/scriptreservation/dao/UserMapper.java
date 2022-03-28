@@ -7,4 +7,5 @@ import tk.mybatis.mapper.common.Mapper;
 public interface UserMapper extends Mapper<User> {
     User getUserByUserName(String uaername);
     void emailActive(User user);
+    Integer updateUserPassword(User user);
 }

@@ -143,6 +143,16 @@ public class UserController {
      */
 
 
+    /**
+     * 密码修改
+     * @return
+     */
+    @PostMapping("updateUserPassword")
+    public Result updateUserPassword(User user){
+        return userService.updateUserPassword(user);
+    }
+
+
 
 
 

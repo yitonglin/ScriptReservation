@@ -8,6 +8,7 @@ import javax.jws.soap.SOAPBinding;
 public interface IUserService {
     Result register(User user);
     Result login(User user);
+    Result updateUserPassword(User user);
     void emailActive(User user);
     Result lookRecord(String id);
     Result personalCollection(String id);

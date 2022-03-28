@@ -79,6 +79,22 @@ public class UserServiceImpl implements IUserService {
         return result;
     }
 
+    @Override
+    public Result updateUserPassword(User user) {
+        Result result = new Result();
+        Integer resultNum = userMapper.updateUserPassword(user);
+        if (resultNum > 0){
+            result.setStatus(true);
+            result.setMsg("密码修改成功");
+            result.setCode(ApplicationEnum.SUCCESS.getCode());
+        } else {
+            result.setStatus(false);
+            result.setMsg("密码修改失败");
+            result.setCode(ApplicationEnum.FAIT.getCode());
+        }
+        return result;
+    }
+
     /**
      * 邮箱激活方法
      * @param user
