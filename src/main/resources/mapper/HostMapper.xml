@@ -9,4 +9,19 @@
     <result column="host_name" jdbcType="VARCHAR" property="hostName" />
     <result column="host_category_like" jdbcType="VARCHAR" property="hostCategoryLike" />
   </resultMap>
+    <select id="selectFreeHost" resultType="com.script.scriptreservation.po.Host" parameterType="long">
+      SELECT
+        *
+      FROM
+        `host`
+      WHERE
+          id NOT IN (
+          SELECT
+            host_id
+          FROM
+            room
+          WHERE
+            `status` = 1
+            AND ( start_time - #{time}) > 86400)
+    </select>
 </mapper>

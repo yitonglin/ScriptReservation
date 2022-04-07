@@ -11,16 +11,52 @@ public class Room {
     private String id;
 
     /**
+     * 房间号
+     */
+    @Column(name = "room_id")
+    private String roomId;
+
+    /**
+     * 剧本ID
+     */
+    @Column(name = "script")
+    private String script;
+
+    /**
+     * 房间创建时间
+     */
+    @Column(name = "create_time")
+    private Long createTime;
+
+    /**
      * 已有人数
      */
     @Column(name = "has_number")
     private Integer hasNumber;
 
     /**
+     * 拼团成功状态
+     */
+    @Column(name = "status")
+    private Integer status;
+
+    /**
+     * 主持人ID
+     */
+    @Column(name = "host_id")
+    private String hostId;
+
+    /**
      * 所需人数
      */
     @Column(name = "need_number")
     private Integer needNumber;
+
+    /**
+     * 剧本开始时间
+     */
+    @Column(name = "start_time")
+    private Integer startTime;
 
     /**
      * 获取房间表主键ID
@@ -74,5 +110,53 @@ public class Room {
      */
     public void setNeedNumber(Integer needNumber) {
         this.needNumber = needNumber;
+    }
+
+    public String getRoomId() {
+        return roomId;
+    }
+
+    public void setRoomId(String roomId) {
+        this.roomId = roomId;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    public Long getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Long createTime) {
+        this.createTime = createTime;
+    }
+
+    public String getScript() {
+        return script;
+    }
+
+    public void setScript(String script) {
+        this.script = script;
+    }
+
+    public String getHostId() {
+        return hostId;
+    }
+
+    public void setHostId(String hostId) {
+        this.hostId = hostId;
+    }
+
+    public Integer getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(Integer startTime) {
+        this.startTime = startTime;
     }
 }

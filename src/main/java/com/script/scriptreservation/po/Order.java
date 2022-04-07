@@ -50,7 +50,7 @@ public class Order {
      * 预约日期
      */
     @Column(name = "forward_date")
-    private String forwardDate;
+    private Long forwardDate;
 
     /**
      * 预约实际付款
@@ -62,13 +62,13 @@ public class Order {
      * 订单创建时间
      */
     @Column(name = "create_time")
-    private String createTime;
+    private Long createTime;
 
     /**
      * 订单退款时间
      */
     @Column(name = "refund_time")
-    private String refundTime;
+    private Long refundTime;
 
     /**
      * 订单状态(0:拼场[预约成功]1:已退款2:拼场[该场次已有*人，还差*人拼场成功]3:包场[预约成功]4:拼场[预约失败，已自动退款])
@@ -202,22 +202,12 @@ public class Order {
         this.forwardNum = forwardNum;
     }
 
-    /**
-     * 获取预约日期
-     *
-     * @return forward_date - 预约日期
-     */
-    public String getForwardDate() {
+    public Long getForwardDate() {
         return forwardDate;
     }
 
-    /**
-     * 设置预约日期
-     *
-     * @param forwardDate 预约日期
-     */
-    public void setForwardDate(String forwardDate) {
-        this.forwardDate = forwardDate == null ? null : forwardDate.trim();
+    public void setForwardDate(Long forwardDate) {
+        this.forwardDate = forwardDate;
     }
 
     /**
@@ -238,40 +228,20 @@ public class Order {
         this.orderMoney = orderMoney;
     }
 
-    /**
-     * 获取订单创建时间
-     *
-     * @return create_time - 订单创建时间
-     */
-    public String getCreateTime() {
+    public Long getCreateTime() {
         return createTime;
     }
 
-    /**
-     * 设置订单创建时间
-     *
-     * @param createTime 订单创建时间
-     */
-    public void setCreateTime(String createTime) {
-        this.createTime = createTime == null ? null : createTime.trim();
+    public void setCreateTime(Long createTime) {
+        this.createTime = createTime;
     }
 
-    /**
-     * 获取订单退款时间
-     *
-     * @return refund_time - 订单退款时间
-     */
-    public String getRefundTime() {
+    public Long getRefundTime() {
         return refundTime;
     }
 
-    /**
-     * 设置订单退款时间
-     *
-     * @param refundTime 订单退款时间
-     */
-    public void setRefundTime(String refundTime) {
-        this.refundTime = refundTime == null ? null : refundTime.trim();
+    public void setRefundTime(Long refundTime) {
+        this.refundTime = refundTime;
     }
 
     /**
