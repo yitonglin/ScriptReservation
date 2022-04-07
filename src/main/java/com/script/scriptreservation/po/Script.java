@@ -44,7 +44,7 @@ public class Script {
      * 购入时间
      */
     @Column(name = "pay_time")
-    private String payTime;
+    private Long payTime;
 
     /**
      * 图片地址
@@ -220,22 +220,12 @@ public class Script {
         this.replyNumber = replyNumber;
     }
 
-    /**
-     * 获取购入时间
-     *
-     * @return pay_time - 购入时间
-     */
-    public String getPayTime() {
+    public Long getPayTime() {
         return payTime;
     }
 
-    /**
-     * 设置购入时间
-     *
-     * @param payTime 购入时间
-     */
-    public void setPayTime(String payTime) {
-        this.payTime = payTime == null ? null : payTime.trim();
+    public void setPayTime(Long payTime) {
+        this.payTime = payTime;
     }
 
     /**

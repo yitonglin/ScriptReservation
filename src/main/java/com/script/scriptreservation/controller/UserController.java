@@ -152,6 +152,12 @@ public class UserController {
         return userService.updateUserPassword(user);
     }
 
+    //用户头像更新  接口使用方式：直接将新的网络头像封装到user对象中即可
+    @PostMapping("updateUserHeadImage")
+    public Result updateUserHeadImage(User user){
+        return userService.updateUserHeadImage(user);
+    }
+
 
 
 

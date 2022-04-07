@@ -136,6 +136,24 @@ public class UserServiceImpl implements IUserService {
         result.setCode(ApplicationEnum.SUCCESS.getCode());
         return result;
     }
+
+    @Override
+    public Result updateUserHeadImage(User user) {
+        Result result = new Result();
+        Integer i = userMapper.updateByPrimaryKey(user);
+        if (i > 0){
+            result.setMsg("用户头像修改成功");
+            result.setData(user);
+            result.setCode(ApplicationEnum.SUCCESS.getCode());
+        } else {
+            result.setStatus(false);
+            result.setMsg("用户头像修改失败");
+            result.setCode(ApplicationEnum.FAIT.getCode());
+        }
+        return result;
+    }
+
+
 }
 
 

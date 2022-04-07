@@ -56,7 +56,7 @@ public class Room {
      * 剧本开始时间
      */
     @Column(name = "start_time")
-    private Integer startTime;
+    private Long startTime;
 
     /**
      * 获取房间表主键ID
@@ -152,11 +152,11 @@ public class Room {
         this.hostId = hostId;
     }
 
-    public Integer getStartTime() {
+    public Long getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(Integer startTime) {
+    public void setStartTime(Long startTime) {
         this.startTime = startTime;
     }
 }

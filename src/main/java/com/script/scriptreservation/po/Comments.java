@@ -30,7 +30,7 @@ public class Comments {
     /**
      * 评论时间
      */
-    private String time;
+    private Long time;
 
     /**
      * 获取评论主键ID
@@ -104,21 +104,11 @@ public class Comments {
         this.content = content == null ? null : content.trim();
     }
 
-    /**
-     * 获取评论时间
-     *
-     * @return time - 评论时间
-     */
-    public String getTime() {
+    public Long getTime() {
         return time;
     }
 
-    /**
-     * 设置评论时间
-     *
-     * @param time 评论时间
-     */
-    public void setTime(String time) {
-        this.time = time == null ? null : time.trim();
+    public void setTime(Long time) {
+        this.time = time;
     }
 }

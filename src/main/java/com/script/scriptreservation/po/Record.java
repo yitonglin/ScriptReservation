@@ -19,7 +19,7 @@ public class Record {
     /**
      * 时间记录
      */
-    private String time;
+    private Long time;
 
     /**
      * 用户ID
@@ -63,22 +63,12 @@ public class Record {
         this.scriptId = scriptId == null ? null : scriptId.trim();
     }
 
-    /**
-     * 获取时间记录
-     *
-     * @return time - 时间记录
-     */
-    public String getTime() {
+    public Long getTime() {
         return time;
     }
 
-    /**
-     * 设置时间记录
-     *
-     * @param time 时间记录
-     */
-    public void setTime(String time) {
-        this.time = time == null ? null : time.trim();
+    public void setTime(Long time) {
+        this.time = time;
     }
 
     /**

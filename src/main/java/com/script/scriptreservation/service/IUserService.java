@@ -13,4 +13,5 @@ public interface IUserService {
     Result lookRecord(String id);
     Result personalCollection(String id);
     Result personalComments(String id);
+    Result updateUserHeadImage(User user);
 }
