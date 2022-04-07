@@ -9,4 +9,7 @@
     <result column="has_number" jdbcType="INTEGER" property="hasNumber" />
     <result column="need_number" jdbcType="INTEGER" property="needNumber" />
   </resultMap>
+  <select id="getFreeRoom" resultType="com.script.scriptreservation.po.Room">
+    SELECT * FROM room WHERE status = 1
+  </select>
 </mapper>
