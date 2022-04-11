@@ -14,8 +14,11 @@
     <result column="phone_number" jdbcType="VARCHAR" property="phoneNumber" />
     <result column="money" jdbcType="INTEGER" property="money" />
   </resultMap>
+    <insert id="payMoney">
+        UPDATE `user` SET money = #{money} WHERE id = #{userId}
+    </insert>
 
-  <select id="getUserByUserName" parameterType="string" resultMap="BaseResultMap">
+    <select id="getUserByUserName" parameterType="string" resultMap="BaseResultMap">
       SELECT
         *
       FROM

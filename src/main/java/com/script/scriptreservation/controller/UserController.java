@@ -4,6 +4,7 @@ import com.script.scriptreservation.po.User;
 import com.script.scriptreservation.service.IUserService;
 import com.script.scriptreservation.utils.MoreUtils;
 import com.script.scriptreservation.utils.ValidateCodeUtil;
+import com.script.scriptreservation.vo.MoneyVo;
 import com.script.scriptreservation.vo.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -104,6 +105,13 @@ public class UserController {
             return false;
         }
     }
+
+    @PostMapping("payMoney")
+    public Result payMoney(MoneyVo moneyVo){
+        return userService.payMoney(moneyVo);
+    }
+
+
 
     /**
      * ========================================================个人中心相关接口========================================================

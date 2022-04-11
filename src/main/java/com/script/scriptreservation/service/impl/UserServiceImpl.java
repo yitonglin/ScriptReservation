@@ -10,10 +10,7 @@ import com.script.scriptreservation.po.User;
 import com.script.scriptreservation.service.IUserService;
 import com.script.scriptreservation.utils.MailUtils;
 import com.script.scriptreservation.utils.MoreUtils;
-import com.script.scriptreservation.vo.CollectionVo;
-import com.script.scriptreservation.vo.CommentsVo;
-import com.script.scriptreservation.vo.Result;
-import com.script.scriptreservation.vo.ScriptRecord;
+import com.script.scriptreservation.vo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -149,6 +146,36 @@ public class UserServiceImpl implements IUserService {
             result.setStatus(false);
             result.setMsg("用户头像修改失败");
             result.setCode(ApplicationEnum.FAIT.getCode());
+        }
+        return result;
+    }
+
+    @Override
+    public Result payMoney(MoneyVo moneyVo) {
+        Result result = new Result();
+        User user = userMapper.selectByPrimaryKey(moneyVo.getUserId());
+        if (moneyVo.getStatus() == 0){
+            //付款
+            if (user.getMoney() < moneyVo.getMoney()){
+                //当钱不够时
+                result.setStatus(false);
+                result.setMsg("您的余额不足支付");
+                result.setCode(ApplicationEnum.FAIT.getCode());
+                return result;
+            } else {
+                moneyVo.setMoney(user.getMoney() - moneyVo.getMoney());
+                userMapper.payMoney(moneyVo);
+                result.setMsg("付款成功");
+                result.setData(user);
+                result.setCode(ApplicationEnum.SUCCESS.getCode());
+            }
+        } else if(moneyVo.getStatus() == 1){
+            //退款
+            moneyVo.setMoney(moneyVo.getMoney() + user.getMoney());
+            userMapper.payMoney(moneyVo);
+            result.setMsg("退款成功");
+            result.setData(user);
+            result.setCode(ApplicationEnum.SUCCESS.getCode());
         }
         return result;
     }
