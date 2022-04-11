@@ -11,11 +11,15 @@ import com.script.scriptreservation.po.Script;
 import com.script.scriptreservation.po.User;
 import com.script.scriptreservation.service.IScriptService;
 import com.script.scriptreservation.utils.MoreUtils;
+import com.script.scriptreservation.vo.LimitPageVo;
 import com.script.scriptreservation.vo.Result;
 import com.script.scriptreservation.vo.RoomScriptVO;
 import com.sun.org.apache.xpath.internal.operations.Or;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PostMapping;
+
+import java.util.List;
 
 @Service
 public class ScriptServiceImpl implements IScriptService {
@@ -260,5 +264,17 @@ public class ScriptServiceImpl implements IScriptService {
         return result;
     }
 
+
+    public Result serachScript(LimitPageVo limitPageVo){
+        Result result = new Result();
+        limitPageVo.setPageCount(limitPageVo.getPageNum() * 5);//计算查询的数据开始的地方
+        limitPageVo.setLikeFiled("%"+limitPageVo.getFiled()+"%");
+        List<Script> scripts = scriptMapper.serachScript(limitPageVo);
+        result.setStatus(true);
+        result.setMsg("分页查询成功");
+        result.setCode(ApplicationEnum.SUCCESS.getCode());
+        result.setData(scripts);
+        return result;
+    }
 
 }

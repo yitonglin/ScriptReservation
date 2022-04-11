@@ -1,6 +1,7 @@
 package com.script.scriptreservation.service;
 
 import com.script.scriptreservation.dto.ScriptCollectionDto;
+import com.script.scriptreservation.vo.LimitPageVo;
 import com.script.scriptreservation.vo.Result;
 import com.script.scriptreservation.vo.RoomScriptVO;
 
@@ -12,4 +13,5 @@ public interface IScriptService {
     Result addRandomGroup(RoomScriptVO roomScriptVO);
     Result allGroup(RoomScriptVO roomScriptVO);
     Result insetRandomGroup(RoomScriptVO roomScriptVO);
+    Result serachScript(LimitPageVo limitPageVo);
 }

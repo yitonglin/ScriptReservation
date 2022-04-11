@@ -75,6 +75,13 @@
             <version>1.5.3</version>
         </dependency>
 
+<!--        Java对象与json互转依赖-->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.12</version>
+        </dependency>
+
         <!--tk.mybatis 通用mapper-->
         <dependency>
             <groupId>tk.mybatis</groupId>

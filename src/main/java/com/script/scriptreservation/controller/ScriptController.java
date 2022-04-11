@@ -2,6 +2,7 @@ package com.script.scriptreservation.controller;
 
 import com.script.scriptreservation.dto.ScriptCollectionDto;
 import com.script.scriptreservation.service.IScriptService;
+import com.script.scriptreservation.vo.LimitPageVo;
 import com.script.scriptreservation.vo.Result;
 import com.script.scriptreservation.vo.RoomScriptVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -92,6 +93,18 @@ public class ScriptController {
     @PostMapping("insetRandomGroup")
     public Result insetRandomGroup(RoomScriptVO roomScriptVO){
         return scriptService.insetRandomGroup(roomScriptVO);
+    }
+
+
+    /**
+     * 测试完毕
+     * 1. 根据剧本名称模糊搜索剧本
+     * 2. 根据分类ID分页查询
+     * @return
+     */
+    @PostMapping("serachScript")
+    public Result serachScript(LimitPageVo limitPageVo){
+        return scriptService.serachScript(limitPageVo);
     }
 
 
