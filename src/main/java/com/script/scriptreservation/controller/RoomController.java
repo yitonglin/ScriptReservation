@@ -1,6 +1,7 @@
 package com.script.scriptreservation.controller;
 
 import com.script.scriptreservation.service.IRoomService;
+import com.script.scriptreservation.vo.LimitPageVo;
 import com.script.scriptreservation.vo.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,11 +26,11 @@ public class RoomController {
     }
 
     /**
-     *
+     * 获取剧本对应的未组队完成的房间 每次只展示五个 传递时传递剧本id和页数
      * @return
      */
     @PostMapping("getScriptFreeRoom")
-    public Result getScriptFreeRoom(){
-
+    public Result getScriptFreeRoom(LimitPageVo limitPageVo){
+        return roomService.getScriptFreeRoom(limitPageVo);
     }
 }

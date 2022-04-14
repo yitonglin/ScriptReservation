@@ -12,4 +12,23 @@
   <select id="getFreeRoom" resultType="com.script.scriptreservation.po.Room">
     SELECT * FROM room WHERE status = 1
   </select>
+    <select id="getScriptFreeRoomCount" resultType="java.lang.Integer">
+      SELECT
+        COUNT( 1 )
+      FROM
+        room
+      WHERE
+        script = #{filed}
+    </select>
+  <select id="getScriptFreeRoom" resultType="com.script.scriptreservation.po.Room">
+    SELECT *
+    FROM room
+    WHERE 1 = 1
+    and status = 1
+    <if test="filed != null and filed !='' ">
+      and script = #{filed}
+    </if>
+    Order By start_time Desc
+    LIMIT #{pageCount},5;
+  </select>
 </mapper>

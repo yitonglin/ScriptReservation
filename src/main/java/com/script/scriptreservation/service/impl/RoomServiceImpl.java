@@ -4,6 +4,7 @@ import com.script.scriptreservation.dao.RoomMapper;
 import com.script.scriptreservation.enums.ApplicationEnum;
 import com.script.scriptreservation.po.Room;
 import com.script.scriptreservation.service.IRoomService;
+import com.script.scriptreservation.vo.LimitPageVo;
 import com.script.scriptreservation.vo.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,6 +32,29 @@ public class RoomServiceImpl implements IRoomService {
             result.setCode(ApplicationEnum.FAIT.getCode());
             result.setData(rooms);
         }
+        return result;
+    }
+
+    @Override
+    public Result getScriptFreeRoom(LimitPageVo limitPageVo) {
+        Result result = new Result();
+        //查询总数
+        Integer count = roomMapper.getScriptFreeRoomCount(limitPageVo);
+        //计算总页数
+        Integer pageCount = 0;
+        if (count % 5 == 0){
+            pageCount = count / 5;
+        } else {
+            pageCount = count / 5 + 1;
+        }
+        limitPageVo.setCount(pageCount);
+        limitPageVo.setPageCount(limitPageVo.getPageNum() * 5);
+        List<Room> rooms = roomMapper.getScriptFreeRoom(limitPageVo);
+        limitPageVo.setListData(rooms);
+        result.setStatus(true);
+        result.setMsg("可加入房间查询成功");
+        result.setCode(ApplicationEnum.SUCCESS.getCode());
+        result.setData(limitPageVo);
         return result;
     }
 }

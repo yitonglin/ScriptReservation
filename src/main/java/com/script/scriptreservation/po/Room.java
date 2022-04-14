@@ -59,6 +59,21 @@ public class Room {
     private Long startTime;
 
     /**
+     * 剧本结束时间
+     */
+    @Column(name = "end_time")
+    private Long endTime;
+
+
+    public Long getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(Long endTime) {
+        this.endTime = endTime;
+    }
+
+    /**
      * 获取房间表主键ID
      *
      * @return id - 房间表主键ID

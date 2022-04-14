@@ -53,6 +53,20 @@ public class Order {
     private Long forwardDate;
 
     /**
+     * 预约结束日期
+     */
+    @Column(name = "forward_end_date")
+    private Long forwardEndDate;
+
+    public Long getForwardEndDate() {
+        return forwardEndDate;
+    }
+
+    public void setForwardEndDate(Long forwardEndDate) {
+        this.forwardEndDate = forwardEndDate;
+    }
+
+    /**
      * 预约实际付款
      */
     @Column(name = "order_money")
