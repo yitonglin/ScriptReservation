@@ -106,6 +106,11 @@ public class UserController {
         }
     }
 
+    /**
+     * 支付与退款接口  测试完毕
+     * @param moneyVo
+     * @return
+     */
     @PostMapping("payMoney")
     public Result payMoney(MoneyVo moneyVo){
         return userService.payMoney(moneyVo);

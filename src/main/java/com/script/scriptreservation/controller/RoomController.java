@@ -23,4 +23,13 @@ public class RoomController {
     public Result getFreeRoom(){
         return roomService.getFreeRoom();
     }
+
+    /**
+     *
+     * @return
+     */
+    @PostMapping("getScriptFreeRoom")
+    public Result getScriptFreeRoom(){
+
+    }
 }
