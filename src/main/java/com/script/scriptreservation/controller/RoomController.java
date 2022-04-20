@@ -33,4 +33,22 @@ public class RoomController {
     public Result getScriptFreeRoom(LimitPageVo limitPageVo){
         return roomService.getScriptFreeRoom(limitPageVo);
     }
+
+    /**
+     * 根据剧本分类ID查询可加入的房间
+     */
+    @PostMapping("getCategoryScriptFreeRoom")
+    public Result getCategoryScriptFreeRoom(String category){
+        return roomService.getCategoryScriptFreeRoom(category);
+    }
+
+
+
+
+
+
+
+
+
+
 }

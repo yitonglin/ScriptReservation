@@ -11,6 +11,9 @@ public class RoomScriptVO {
     //用户ID
     private String userId;
 
+    //剧本的分类ID 用于房间创建时写入
+    private String categoryId;
+
     //剧本一共所需人数
     private Integer scriptNum;
 

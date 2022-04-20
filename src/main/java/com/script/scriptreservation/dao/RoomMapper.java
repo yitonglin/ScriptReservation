@@ -11,4 +11,6 @@ public interface RoomMapper extends Mapper<Room> {
     List<Room> getFreeRoom();
     List<Room> getScriptFreeRoom(LimitPageVo limitPageVo);
     Integer getScriptFreeRoomCount(LimitPageVo limitPageVo);
+
+    List<Room> getCategoryScriptFreeRoom(String category);
 }

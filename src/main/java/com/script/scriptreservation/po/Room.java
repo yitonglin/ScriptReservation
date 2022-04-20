@@ -22,6 +22,15 @@ public class Room {
     @Column(name = "script")
     private String script;
 
+    //剧本名称
+    private String scriptName;
+
+    /**
+     * 剧本分类ID
+     */
+    @Column(name = "category_id")
+    private String categoryId;
+
     /**
      * 房间创建时间
      */
@@ -109,6 +118,14 @@ public class Room {
         this.hasNumber = hasNumber;
     }
 
+    public String getScriptName() {
+        return scriptName;
+    }
+
+    public void setScriptName(String scriptName) {
+        this.scriptName = scriptName;
+    }
+
     /**
      * 获取所需人数
      *
@@ -173,5 +190,13 @@ public class Room {
 
     public void setStartTime(Long startTime) {
         this.startTime = startTime;
+    }
+
+    public String getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(String categoryId) {
+        this.categoryId = categoryId;
     }
 }

@@ -31,4 +31,25 @@
     Order By start_time Desc
     LIMIT #{pageCount},5;
   </select>
+  <select id="getCategoryScriptFreeRoom" resultType="com.script.scriptreservation.po.Room" parameterType="string">
+    SELECT
+        r.id AS id,
+        r.has_number AS hasNumber,
+        r.need_number AS needNumber,
+        r.create_time AS createTime,
+        r.script AS script,
+        r.STATUS AS STATUS,
+        r.room_id AS roomId,
+        r.host_id AS hostId,
+        r.start_time AS startTime,
+        r.category_id AS categoryId,
+        r.end_time AS endTime,
+        s.script_name AS scriptName
+    FROM
+        room r
+            LEFT JOIN script s ON s.id = r.script
+    WHERE
+        r.category_id = #{category}
+      AND r.STATUS = 1
+  </select>
 </mapper>

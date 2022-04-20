@@ -5,8 +5,8 @@ import lombok.Getter;
 @Getter
 public enum ApplicationEnum {
 
-    SUCCESS("2000","业务执行成功"),
-    FAIT("5000","业务执行失败"),
+    SUCCESS("200","业务执行成功"),
+    FAIT("500","业务执行失败"),
     USER_NAME_PERETITION("4001","用户名已存在"),
     USRR_OR_PWD_ERR("4002","用户名或密码错误"),
     NO_LOGIN("4003","未登录"),

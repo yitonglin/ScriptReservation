@@ -57,4 +57,15 @@ public class RoomServiceImpl implements IRoomService {
         result.setData(limitPageVo);
         return result;
     }
+
+    @Override
+    public Result getCategoryScriptFreeRoom(String category) {
+        Result result = new Result();
+        List<Room> rooms = roomMapper.getCategoryScriptFreeRoom(category);
+        result.setStatus(true);
+        result.setMsg("分类可加入房间查询成功");
+        result.setCode(ApplicationEnum.SUCCESS.getCode());
+        result.setData(rooms);
+        return result;
+    }
 }
