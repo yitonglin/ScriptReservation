@@ -14,4 +14,5 @@ public interface IScriptService {
     Result allGroup(RoomScriptVO roomScriptVO);
     Result insetRandomGroup(RoomScriptVO roomScriptVO);
     Result serachScript(LimitPageVo limitPageVo);
+    Result getScriptIdFreeRoom(String scriptId);
 }

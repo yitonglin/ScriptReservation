@@ -281,4 +281,14 @@ public class ScriptServiceImpl implements IScriptService {
         return result;
     }
 
+    @Override
+    public Result getScriptIdFreeRoom(String scriptId) {
+        Result result = new Result();
+        List<Room> rooms = roomMapper.getScriptIdFreeRoom(scriptId);
+        result.setMsg("此剧本下可加入的房间查询成功");
+        result.setCode(ApplicationEnum.SUCCESS.getCode());
+        result.setData(rooms);
+        return result;
+    }
+
 }

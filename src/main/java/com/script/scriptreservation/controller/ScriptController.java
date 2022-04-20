@@ -107,6 +107,14 @@ public class ScriptController {
         return scriptService.serachScript(limitPageVo);
     }
 
+    /**
+     * 查询当前剧本所对应的可加入拼团的房间 测试完毕
+     */
+    @PostMapping("getScriptIdFreeRoom")
+    public Result getScriptIdFreeRoom(String scriptId){
+        return scriptService.getScriptIdFreeRoom(scriptId);
+    }
+
 
 
 }
