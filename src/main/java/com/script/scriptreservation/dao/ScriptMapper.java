@@ -14,4 +14,6 @@ public interface ScriptMapper extends Mapper<Script> {
     void stepNum(String id);
     Integer scriptCollection(ScriptCollectionDto scriptCollectionDto);
     List<Script> serachScript(LimitPageVo limitPageVo);
+
+    Integer serachScriptCount(LimitPageVo limitPageVo);
 }

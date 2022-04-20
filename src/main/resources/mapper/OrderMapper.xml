@@ -18,4 +18,46 @@
     <result column="refund_time" jdbcType="VARCHAR" property="refundTime" />
     <result column="order_status" jdbcType="INTEGER" property="orderStatus" />
   </resultMap>
+  <select id="newHistoryOrder" resultType="com.script.scriptreservation.vo.OrderScriptVo">
+      SELECT
+          s.script_name AS scriptName,
+          o.create_time AS orderCreateTime,
+          o.order_status AS orderStatus,
+          o.refund_time AS refundTime,
+          o.order_number AS orderNumber,
+          o.order_flag AS orderFlag,
+          o.script_id AS scriptId,
+          o.forward_date AS forwardDate,
+          o.forward_end_date AS forwardEndDate
+      FROM
+          `order` o
+              LEFT JOIN script s ON s.id = o.script_id
+      WHERE
+          o.user_id = #{filed}
+        AND o.forward_date > #{timeCurrent}
+      ORDER BY
+          o.create_time DESC
+          LIMIT #{i},10
+  </select>
+  <select id="historyOrder" resultType="com.script.scriptreservation.vo.OrderScriptVo">
+      SELECT
+      s.script_name AS scriptName,
+      o.create_time AS orderCreateTime,
+      o.order_status AS orderStatus,
+      o.refund_time AS refundTime,
+      o.order_number AS orderNumber,
+      o.order_flag AS orderFlag,
+      o.script_id AS scriptId,
+      o.forward_date AS forwardDate,
+      o.forward_end_date AS forwardEndDate
+      FROM
+      `order` o
+      LEFT JOIN script s ON s.id = o.script_id
+      WHERE
+      o.user_id = #{filed}
+      AND o.forward_date &lt; #{timeCurrent}
+      ORDER BY
+      o.create_time DESC
+      LIMIT #{i},10
+    </select>
 </mapper>

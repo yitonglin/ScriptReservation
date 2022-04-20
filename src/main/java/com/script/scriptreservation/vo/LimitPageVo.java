@@ -10,7 +10,7 @@ public class LimitPageVo<T> implements Serializable {
     //查询信息  可用于传递剧本名称和用户ID
     private String filed;
 
-    //当前页数
+    //需要查询的页数
     private Integer pageNum;
 
     //拼接模糊查询信息

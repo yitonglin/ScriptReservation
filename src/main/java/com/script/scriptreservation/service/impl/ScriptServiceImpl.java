@@ -269,11 +269,13 @@ public class ScriptServiceImpl implements IScriptService {
         Result result = new Result();
         limitPageVo.setPageCount(limitPageVo.getPageNum() * 5);//计算查询的数据开始的地方
         limitPageVo.setLikeFiled("%"+limitPageVo.getFiled()+"%");
+        limitPageVo.setCount(scriptMapper.serachScriptCount(limitPageVo));
         List<Script> scripts = scriptMapper.serachScript(limitPageVo);
         result.setStatus(true);
         result.setMsg("分页查询成功");
         result.setCode(ApplicationEnum.SUCCESS.getCode());
-        result.setData(scripts);
+        limitPageVo.setListData(scripts);
+        result.setData(limitPageVo);
         return result;
     }
 

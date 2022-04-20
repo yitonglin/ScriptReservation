@@ -62,6 +62,19 @@
     Order By pay_time Desc
     LIMIT #{pageCount},#{len};
   </select>
+  <select id="serachScriptCount" resultType="java.lang.Integer" parameterType="com.script.scriptreservation.vo.LimitPageVo">
+    SELECT count(1)
+    FROM script
+    WHERE 1 = 1
+    <if test="categoryId != null and categoryId !='' ">
+      and category_id=#{categoryId}
+    </if>
+    <if test="filed != null and filed !='' ">
+      and script_name like #{likeFiled}
+    </if>
+    Order By pay_time Desc
+    LIMIT #{pageCount},#{len};
+  </select>
 
 
 </mapper>

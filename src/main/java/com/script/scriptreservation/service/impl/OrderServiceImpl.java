@@ -9,9 +9,13 @@ import com.script.scriptreservation.po.Room;
 import com.script.scriptreservation.po.User;
 import com.script.scriptreservation.service.IOrderService;
 import com.script.scriptreservation.utils.MoreUtils;
+import com.script.scriptreservation.vo.LimitPageVo;
+import com.script.scriptreservation.vo.OrderScriptVo;
 import com.script.scriptreservation.vo.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class OrderServiceImpl implements IOrderService {
@@ -90,6 +94,36 @@ public class OrderServiceImpl implements IOrderService {
             result.setMsg("当前距离开场已不足六个小时，已不能退款");
             result.setCode(ApplicationEnum.SUCCESS.getCode());
         }
+        return result;
+    }
+
+    @Override
+    public Result historyOrder(LimitPageVo limitPageVo) {
+        Result result = new Result();
+        //参数 用户id  分页参数  当前时间戳
+        Long timeCurrent = MoreUtils.getCurrentTime();
+        List<OrderScriptVo> orderScriptVos = orderMapper.historyOrder(limitPageVo.getFiled(),limitPageVo.getPageNum() * 10,timeCurrent);
+        limitPageVo.setCount(orderScriptVos.size());
+        limitPageVo.setListData(orderScriptVos);
+        result.setStatus(true);
+        result.setMsg("历史订单查询完成");
+        result.setCode(ApplicationEnum.SUCCESS.getCode());
+        result.setData(limitPageVo);
+        return result;
+    }
+
+    @Override
+    public Result newHistoryOrder(LimitPageVo limitPageVo) {
+        Result result = new Result();
+        //参数 用户id  分页参数  当前时间戳
+        Long timeCurrent = MoreUtils.getCurrentTime();
+        List<OrderScriptVo> orderScriptVos = orderMapper.newHistoryOrder(limitPageVo.getFiled(),limitPageVo.getPageNum() * 10,timeCurrent);
+        limitPageVo.setCount(orderScriptVos.size());
+        limitPageVo.setListData(orderScriptVos);
+        result.setStatus(true);
+        result.setMsg("最新订单查询完成");
+        result.setCode(ApplicationEnum.SUCCESS.getCode());
+        result.setData(limitPageVo);
         return result;
     }
 }
