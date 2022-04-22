@@ -4,5 +4,6 @@ import com.script.scriptreservation.vo.Result;
 
 public interface IHostService {
 
-    Result selectFreeHost();
+    Result selectFreeHost(Long startTime);
+    Result selectHostById(String id);
 }

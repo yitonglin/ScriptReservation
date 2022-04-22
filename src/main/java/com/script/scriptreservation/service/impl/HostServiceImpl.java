@@ -18,10 +18,10 @@ public class HostServiceImpl implements IHostService {
     private HostMapper hostMapper;
 
     @Override
-    public Result selectFreeHost() {
+    public Result selectFreeHost(Long startTime) {
         Result result = new Result();
-        List<Host> hosts = hostMapper.selectFreeHost(MoreUtils.getCurrentTime());
-        if (hosts != null && hosts.isEmpty()){
+        List<Host> hosts = hostMapper.selectFreeHost(startTime);
+        if (hosts != null && !hosts.isEmpty()){
             result.setStatus(true);
             result.setMsg("主持人查询成功");
             result.setCode(ApplicationEnum.SUCCESS.getCode());
@@ -31,6 +31,17 @@ public class HostServiceImpl implements IHostService {
             result.setMsg("主持人查询失败");
             result.setCode(ApplicationEnum.FAIT.getCode());
         }
+        return result;
+    }
+
+    @Override
+    public Result selectHostById(String id) {
+        Result result = new Result();
+        Host host = hostMapper.selectByPrimaryKey(id);
+        result.setStatus(true);
+        result.setMsg("主持人查询成功");
+        result.setCode(ApplicationEnum.SUCCESS.getCode());
+        result.setData(host);
         return result;
     }
 }

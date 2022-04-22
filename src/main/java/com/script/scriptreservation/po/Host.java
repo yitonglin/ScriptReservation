@@ -23,6 +23,35 @@ public class Host {
     private String hostCategoryLike;
 
     /**
+     * 主持人介绍
+     */
+    @Column(name = "host_introduce")
+    private String hostIntroduce;
+
+    /**
+     * 主持人图片
+     */
+    @Column(name = "host_image")
+    private String hostImage;
+
+
+    public String getHostIntroduce() {
+        return hostIntroduce;
+    }
+
+    public void setHostIntroduce(String hostIntroduce) {
+        this.hostIntroduce = hostIntroduce;
+    }
+
+    public String getHostImage() {
+        return hostImage;
+    }
+
+    public void setHostImage(String hostImage) {
+        this.hostImage = hostImage;
+    }
+
+    /**
      * 获取主持人主键ID
      *
      * @return id - 主持人主键ID

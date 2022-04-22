@@ -8,8 +8,10 @@
     <id column="id" jdbcType="VARCHAR" property="id" />
     <result column="host_name" jdbcType="VARCHAR" property="hostName" />
     <result column="host_category_like" jdbcType="VARCHAR" property="hostCategoryLike" />
+    <result column="host_introduce" jdbcType="VARCHAR" property="hostIntroduce" />
+    <result column="host_image" jdbcType="VARCHAR" property="hostImage" />
   </resultMap>
-    <select id="selectFreeHost" resultType="com.script.scriptreservation.po.Host" parameterType="long">
+    <select id="selectFreeHost" resultMap="BaseResultMap" parameterType="long">
       SELECT
         *
       FROM
@@ -21,7 +23,7 @@
           FROM
             room
           WHERE
-            `status` = 1
-            AND ( start_time - #{time}) > 86400)
+            1 = 1
+            AND start_time = #{time})
     </select>
 </mapper>

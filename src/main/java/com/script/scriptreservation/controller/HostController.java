@@ -15,12 +15,23 @@ public class HostController {
     private IHostService hostService;
 
     /**
-     * 未测试
-     * 查询当前空闲的主持人
+     * 已测试
+     * 查询当前空闲的主持人  传入预约的时间  然后跟房间的开始时间进行对比  查询到的主持人再跟所有主持人进行diff处理
      */
     @PostMapping("selectFreeHost")
-    public Result selectFreeHost(){
-        return hostService.selectFreeHost();
+    public Result selectFreeHost(Long startTime){
+        return hostService.selectFreeHost(startTime);
     }
+
+    /**
+     * 根据支持人ID查询主持人信息
+     * @param id
+     * @return
+     */
+    @PostMapping("selectHostById")
+    public Result selectHostById(String id){
+        return hostService.selectHostById(id);
+    }
+
 
 }
