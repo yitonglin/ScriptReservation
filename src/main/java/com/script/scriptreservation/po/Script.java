@@ -90,6 +90,12 @@ public class Script {
      */
     private Integer greatNum;
 
+    //剧本亮点
+    private String scriptSunPoint;
+
+    //剧本发行人
+    private String createUser;
+
     /**
      * 点踩数
      */
@@ -100,6 +106,22 @@ public class Script {
 
     //发行人
     private String createName;
+
+    public String getScriptSunPoint() {
+        return scriptSunPoint;
+    }
+
+    public void setScriptSunPoint(String scriptSunPoint) {
+        this.scriptSunPoint = scriptSunPoint;
+    }
+
+    public String getCreateUser() {
+        return createUser;
+    }
+
+    public void setCreateUser(String createUser) {
+        this.createUser = createUser;
+    }
 
     public String getScriptSun() {
         return scriptSun;

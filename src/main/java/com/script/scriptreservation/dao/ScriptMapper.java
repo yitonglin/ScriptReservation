@@ -16,4 +16,8 @@ public interface ScriptMapper extends Mapper<Script> {
     List<Script> serachScript(LimitPageVo limitPageVo);
 
     Integer serachScriptCount(LimitPageVo limitPageVo);
+
+    List<Script> getIndexScript(LimitPageVo limitPageVo);
+
+    Integer getIndexScriptCount(LimitPageVo limitPageVo);
 }

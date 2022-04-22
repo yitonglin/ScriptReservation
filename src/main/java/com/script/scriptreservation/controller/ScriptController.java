@@ -5,6 +5,7 @@ import com.script.scriptreservation.service.IScriptService;
 import com.script.scriptreservation.vo.LimitPageVo;
 import com.script.scriptreservation.vo.Result;
 import com.script.scriptreservation.vo.RoomScriptVO;
+import org.apache.logging.log4j.util.PerformanceSensitive;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -113,6 +114,15 @@ public class ScriptController {
     @PostMapping("getScriptIdFreeRoom")
     public Result getScriptIdFreeRoom(String scriptId){
         return scriptService.getScriptIdFreeRoom(scriptId);
+    }
+
+    /**
+     * 首页推荐&分类查询 传递分类信息的时候安分类查询  测试完毕
+     * @return
+     */
+    @PostMapping("getIndexScript")
+    public Result getIndexScript(LimitPageVo limitPageVo){
+        return scriptService.getIndexScript(limitPageVo);
     }
 
 

@@ -21,8 +21,8 @@
     <result column="level" jdbcType="INTEGER" property="level" />
     <result column="great_num" jdbcType="VARCHAR" property="greatNum" />
     <result column="step_num" jdbcType="VARCHAR" property="stepNum" />
-    <result column="script_sun" jdbcType="VARCHAR" property="scriptSun" />
-    <result column="create_name" jdbcType="VARCHAR" property="createName" />
+    <result column="script_sun_point" jdbcType="VARCHAR" property="scriptSunPoint" />
+    <result column="create_user" jdbcType="VARCHAR" property="createUser" />
   </resultMap>
   <insert id="scriptCollection" parameterType="com.script.scriptreservation.dto.ScriptCollectionDto">
     INSERT INTO collection ( id, user_id, script_id, collection_time )
@@ -74,6 +74,28 @@
     </if>
     Order By pay_time Desc
     LIMIT #{pageCount},#{len};
+  </select>
+    <select id="getIndexScript" resultMap="BaseResultMap" parameterType="com.script.scriptreservation.vo.LimitPageVo">
+      SELECT
+        *
+      FROM
+        script
+      WHERE
+        1 = 1
+      <if test="filed != null and filed !='' ">
+         AND category_id = #{filed}
+      </if>
+      ORDER BY
+        pay_time DESC
+        LIMIT #{pageCount},#{len}
+    </select>
+  <select id="getIndexScriptCount" resultType="java.lang.Integer" parameterType="com.script.scriptreservation.vo.LimitPageVo">
+    SELECT
+      COUNT( 1 )
+    FROM
+      script
+    WHERE
+      category_id = #{filed}
   </select>
 
 

@@ -291,4 +291,19 @@ public class ScriptServiceImpl implements IScriptService {
         return result;
     }
 
+    @Override
+    public Result getIndexScript(LimitPageVo limitPageVo) {
+        Result result = new Result();
+        //计算分页开始查询的地方
+        limitPageVo.setPageCount(limitPageVo.getPageNum() * limitPageVo.getLen());
+        //查询总条数
+        limitPageVo.setCount(scriptMapper.getIndexScriptCount(limitPageVo));
+        List<Script> scripts = scriptMapper.getIndexScript(limitPageVo);
+        limitPageVo.setListData(scripts);
+        result.setMsg("列表查询成功");
+        result.setCode(ApplicationEnum.SUCCESS.getCode());
+        result.setData(limitPageVo);
+        return result;
+    }
+
 }
