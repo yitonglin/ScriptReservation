@@ -9,4 +9,5 @@ import java.util.List;
 @org.apache.ibatis.annotations.Mapper
 public interface HostMapper extends Mapper<Host> {
     List<Host> selectFreeHost(Long time);
+    List<Host> selectIndexHost();
 }

@@ -6,4 +6,5 @@ public interface IHostService {
 
     Result selectFreeHost(Long startTime);
     Result selectHostById(String id);
+    Result selectIndexHost();
 }

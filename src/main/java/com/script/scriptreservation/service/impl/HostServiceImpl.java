@@ -44,4 +44,21 @@ public class HostServiceImpl implements IHostService {
         result.setData(host);
         return result;
     }
+
+    @Override
+    public Result selectIndexHost() {
+        Result result = new Result();
+        List<Host> hosts = hostMapper.selectIndexHost();
+        if (hosts != null && !hosts.isEmpty()){
+            result.setStatus(true);
+            result.setMsg("主持人推荐查询成功");
+            result.setCode(ApplicationEnum.SUCCESS.getCode());
+            result.setData(hosts);
+        } else {
+            result.setStatus(false);
+            result.setMsg("主持人推荐查询失败");
+            result.setCode(ApplicationEnum.FAIT.getCode());
+        }
+        return result;
+    }
 }

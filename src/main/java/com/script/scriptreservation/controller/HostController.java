@@ -24,13 +24,22 @@ public class HostController {
     }
 
     /**
-     * 根据支持人ID查询主持人信息
+     * 根据支持人ID查询主持人信息 已测试
      * @param id
      * @return
      */
     @PostMapping("selectHostById")
     public Result selectHostById(String id){
         return hostService.selectHostById(id);
+    }
+
+    /**
+     * 首页主持人推荐 已测试
+     * @return
+     */
+    @PostMapping("selectIndexHost")
+    public Result selectIndexHost(){
+        return hostService.selectIndexHost();
     }
 
 
