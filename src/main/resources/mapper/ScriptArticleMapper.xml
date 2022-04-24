@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.script.scriptreservation.dao.ScriptArticleMapper">
+    <insert id="insertScriptArticle" parameterType="com.script.scriptreservation.po.ScriptArticle">
+        INSERT INTO scriptArticle
+        VALUES
+            ( #{ID}, #{userId}, #{scriptId}, #{status} );
+    </insert>
+    <update id="updateScriptArticle" parameterType="com.script.scriptreservation.po.ScriptArticle">
+        UPDATE scriptArticle
+        SET `status` = #{status}
+        WHERE
+            user_id = #{userId}
+          AND script_id = #{scriptId}
+    </update>
+
+
+    <select id="dataCount" resultType="java.lang.Integer" parameterType="com.script.scriptreservation.po.ScriptArticle">
+        SELECT
+            COUNT( 1 )
+        FROM
+            scriptArticle
+        WHERE
+            user_id = #{userId}
+          AND script_id = #{scriptId}
+    </select>
+</mapper>
