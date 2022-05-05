@@ -12,4 +12,6 @@ public interface OrderMapper extends Mapper<Order> {
     List<OrderScriptVo> historyOrder(@Param("filed") String filed, @Param("i") int i,@Param("timeCurrent") Long timeCurrent);
 
     List<OrderScriptVo> newHistoryOrder(@Param("filed") String filed, @Param("i") int i,@Param("timeCurrent") Long timeCurrent);
+
+    Integer createOrder(Order order);
 }

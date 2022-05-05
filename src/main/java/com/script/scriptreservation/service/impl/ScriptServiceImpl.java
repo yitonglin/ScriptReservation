@@ -106,7 +106,7 @@ public class ScriptServiceImpl implements IScriptService {
         room.setCreateTime(MoreUtils.getCurrentTime());
         room.setScript(roomScriptVO.getScriptId());
         room.setCategoryId(roomScriptVO.getCategoryId());
-        room.setStartTime(room.getStartTime());
+        room.setStartTime(roomScriptVO.getStartTime());
         room.setHostId(roomScriptVO.getHostId());
         //此处为新建拼团，所以在逻辑上并不会完全拼成 拼成的逻辑应在建团的时候存在 所以此处为未拼完成状态
         room.setStatus(1);
@@ -130,7 +130,7 @@ public class ScriptServiceImpl implements IScriptService {
             order.setCreateTime(MoreUtils.getCurrentTime());
             //默认为拼场成功
             order.setOrderStatus(0);
-            int j = orderMapper.insert(order);
+            int j = orderMapper.createOrder(order);
             if (j > 0){
                 result.setStatus(true);
                 result.setMsg("拼团成功");
@@ -193,7 +193,7 @@ public class ScriptServiceImpl implements IScriptService {
             order.setRefundTime(MoreUtils.getCurrentTime());
             //默认为包场成功状态
             order.setOrderStatus(2);
-            int j = orderMapper.insert(order);
+            int j = orderMapper.createOrder(order);
             if (j > 0){
                 result.setStatus(true);
                 result.setMsg("包场成功");
@@ -246,7 +246,7 @@ public class ScriptServiceImpl implements IScriptService {
             order.setCreateTime(MoreUtils.getCurrentTime());
             //默认为拼场成功
             order.setOrderStatus(0);
-            Integer j = orderMapper.insert(order);
+            Integer j = orderMapper.createOrder(order);
             if (j > 0){
                 result.setStatus(true);
                 result.setMsg("加入拼团成功");
