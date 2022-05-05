@@ -23,4 +23,21 @@
       WHERE
         c.user_id = #{id}
     </select>
+    <select id="scriptComments" resultType="com.script.scriptreservation.po.Comments" parameterType="com.script.scriptreservation.vo.LimitPageVo">
+      SELECT
+        *
+      FROM
+        comments
+      WHERE
+        script_id = #{filed}
+        LIMIT #{pageCount},#{len};
+    </select>
+  <select id="commentsCount" resultType="java.lang.Integer" parameterType="string">
+    SELECT
+      count(1)
+    FROM
+      comments
+    WHERE
+      script_id = #{scriptId}
+  </select>
 </mapper>

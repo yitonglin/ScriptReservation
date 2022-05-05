@@ -48,7 +48,7 @@ public class ScriptController {
     }
 
     /**
-     * 剧本信息展示
+     * 剧本信息展示  todo 浏览记录  剧本查看量加一
      * @param id
      * @return
      */
