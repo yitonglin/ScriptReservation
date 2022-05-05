@@ -105,6 +105,7 @@ public class ScriptServiceImpl implements IScriptService {
         room.setNeedNumber(roomScriptVO.getScriptNum() - roomScriptVO.getPersonNum());
         room.setCreateTime(MoreUtils.getCurrentTime());
         room.setScript(roomScriptVO.getScriptId());
+        room.setScriptName(roomScriptVO.getScriptName());
         room.setCategoryId(roomScriptVO.getCategoryId());
         room.setStartTime(roomScriptVO.getStartTime());
         room.setHostId(roomScriptVO.getHostId());
@@ -169,6 +170,7 @@ public class ScriptServiceImpl implements IScriptService {
         room.setCategoryId(roomScriptVO.getCategoryId());
         room.setStartTime(room.getStartTime());
         room.setScript(roomScriptVO.getScriptId());
+        room.setScriptName(roomScriptVO.getScriptName());
         room.setHostId(roomScriptVO.getHostId());
         //此处为新建包场，所以此处为拼成状态
         room.setStatus(0);
