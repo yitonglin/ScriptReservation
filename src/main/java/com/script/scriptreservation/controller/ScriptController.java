@@ -53,8 +53,8 @@ public class ScriptController {
      * @return
      */
     @PostMapping("scriptInfo")
-    public Result scriptInfo(String id){
-        return scriptService.scriptInfo(id);
+    public Result scriptInfo(ScriptCollectionDto scriptCollectionDto){
+        return scriptService.scriptInfo(scriptCollectionDto);
     }
 
     /**

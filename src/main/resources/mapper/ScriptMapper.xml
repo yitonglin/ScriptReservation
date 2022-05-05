@@ -36,7 +36,7 @@
   </insert>
 
 
-  <update id="greatNumPlus" parameterType="string">
+    <update id="greatNumPlus" parameterType="string">
     UPDATE `script`
     SET great_num = great_num + 1
     WHERE
@@ -49,6 +49,12 @@
     WHERE
       id = #{id}
   </update>
+
+<!--  剧本浏览量加一-->
+  <update id="updateRecordPlus" parameterType="string">
+    update script set look_number=look_number+1 where id=#{scriptId};
+  </update>
+
   <select id="serachScript" resultMap="BaseResultMap" parameterType="com.script.scriptreservation.vo.LimitPageVo">
     SELECT *
     FROM script

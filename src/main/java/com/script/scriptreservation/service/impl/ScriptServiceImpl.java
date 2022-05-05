@@ -1,14 +1,12 @@
 package com.script.scriptreservation.service.impl;
 
 import com.script.scriptreservation.dao.OrderMapper;
+import com.script.scriptreservation.dao.RecordMapper;
 import com.script.scriptreservation.dao.RoomMapper;
 import com.script.scriptreservation.dao.ScriptMapper;
 import com.script.scriptreservation.dto.ScriptCollectionDto;
 import com.script.scriptreservation.enums.ApplicationEnum;
-import com.script.scriptreservation.po.Order;
-import com.script.scriptreservation.po.Room;
-import com.script.scriptreservation.po.Script;
-import com.script.scriptreservation.po.User;
+import com.script.scriptreservation.po.*;
 import com.script.scriptreservation.service.IScriptService;
 import com.script.scriptreservation.utils.MoreUtils;
 import com.script.scriptreservation.vo.LimitPageVo;
@@ -32,6 +30,9 @@ public class ScriptServiceImpl implements IScriptService {
 
     @Autowired
     private OrderMapper orderMapper;
+
+    @Autowired
+    private RecordMapper recordMapper;
 
     @Override
     public Result greatNumPlus(String id) {
@@ -73,9 +74,19 @@ public class ScriptServiceImpl implements IScriptService {
     }
 
     @Override
-    public Result scriptInfo(String id) {
+    public Result scriptInfo(ScriptCollectionDto scriptCollectionDto) {
         Result result = new Result();
-        Script script = scriptMapper.selectByPrimaryKey(id);
+        //剧本信息查询
+        Script script = scriptMapper.selectByPrimaryKey(scriptCollectionDto.getScriptId());
+        //剧本浏览量加一
+        scriptMapper.updateRecordPlus(scriptCollectionDto.getScriptId());
+        //用户足迹记录
+        Record record = new Record();
+        record.setScriptId(scriptCollectionDto.getScriptId());
+        record.setUserId(scriptCollectionDto.getUserId());
+        record.setId(MoreUtils.createId());
+        record.setTime(MoreUtils.getCurrentTime());
+        recordMapper.insert(record);
         if ( script != null){
             result.setStatus(true);
             result.setMsg("剧本查询成功");

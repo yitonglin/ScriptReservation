@@ -20,4 +20,6 @@ public interface ScriptMapper extends Mapper<Script> {
     List<Script> getIndexScript(LimitPageVo limitPageVo);
 
     Integer getIndexScriptCount(LimitPageVo limitPageVo);
+
+    void updateRecordPlus(String scriptId);
 }
