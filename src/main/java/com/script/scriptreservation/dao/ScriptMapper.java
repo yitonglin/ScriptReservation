@@ -22,4 +22,7 @@ public interface ScriptMapper extends Mapper<Script> {
     Integer getIndexScriptCount(LimitPageVo limitPageVo);
 
     void updateRecordPlus(String scriptId);
+    Integer getScriptCount(String scriptId);
+    Integer getScriptGoodCount(String scriptId);
+    Integer getScriptPoorCount(String scriptId);
 }

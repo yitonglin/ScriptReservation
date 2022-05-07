@@ -37,6 +37,16 @@
             #{orderStatus}
         )
     </insert>
+    <select id="getNewOrderCount" resultType="java.lang.Integer">
+        SELECT
+            count(1)
+        FROM
+            `order` o
+                LEFT JOIN script s ON s.id = o.script_id
+        WHERE
+            o.user_id = #{filed}
+          AND o.forward_date > #{timeCurrent}
+    </select>
     <select id="newHistoryOrder" resultType="com.script.scriptreservation.vo.OrderScriptVo">
       SELECT
           s.script_name AS scriptName,
@@ -56,7 +66,7 @@
         AND o.forward_date > #{timeCurrent}
       ORDER BY
           o.create_time DESC
-          LIMIT #{i},10
+          LIMIT #{i},#{len}
   </select>
   <select id="historyOrder" resultType="com.script.scriptreservation.vo.OrderScriptVo">
       SELECT
@@ -68,7 +78,8 @@
       o.order_flag AS orderFlag,
       o.script_id AS scriptId,
       o.forward_date AS forwardDate,
-      o.forward_end_date AS forwardEndDate
+      o.forward_end_date AS forwardEndDate,
+      o.order_money AS orderMoney
       FROM
       `order` o
       LEFT JOIN script s ON s.id = o.script_id
@@ -77,6 +88,17 @@
       AND o.forward_date &lt; #{timeCurrent}
       ORDER BY
       o.create_time DESC
-      LIMIT #{i},10
+      LIMIT #{i},#{len}
     </select>
+    <select id="getOrderCount" resultType="java.lang.Integer">
+        SELECT
+            count(1)
+        FROM
+            `order` o
+                LEFT JOIN script s ON s.id = o.script_id
+        WHERE
+            o.user_id = #{filed}
+          AND o.forward_date &lt; #{timeCurrent}
+    </select>
+
 </mapper>

@@ -78,6 +78,21 @@ public class ScriptServiceImpl implements IScriptService {
         Result result = new Result();
         //剧本信息查询
         Script script = scriptMapper.selectByPrimaryKey(scriptCollectionDto.getScriptId());
+        //剧本评分计算
+        //剧本评论总数
+        Integer count = scriptMapper.getScriptCount(scriptCollectionDto.getScriptId());
+        //剧本好评数
+        Integer goodCount = scriptMapper.getScriptGoodCount(scriptCollectionDto.getScriptId());
+        //剧本差评数
+        Integer poorCount = scriptMapper.getScriptPoorCount(scriptCollectionDto.getScriptId());
+        //评分计算
+        double fraction = goodCount/count;
+        script.setCount(count);
+        script.setGoodCount(goodCount);
+        script.setPoorCount(poorCount);
+        script.setFraction(fraction);
+
+
         //剧本浏览量加一
         scriptMapper.updateRecordPlus(scriptCollectionDto.getScriptId());
         //用户足迹记录

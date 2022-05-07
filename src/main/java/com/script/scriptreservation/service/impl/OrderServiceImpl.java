@@ -102,9 +102,12 @@ public class OrderServiceImpl implements IOrderService {
         Result result = new Result();
         //参数 用户id  分页参数  当前时间戳
         Long timeCurrent = MoreUtils.getCurrentTime();
-        List<OrderScriptVo> orderScriptVos = orderMapper.historyOrder(limitPageVo.getFiled(),limitPageVo.getPageNum() * 10,timeCurrent);
+        //查询数据的总条数
+        Integer count = orderMapper.getOrderCount(limitPageVo.getFiled(),timeCurrent);
+        List<OrderScriptVo> orderScriptVos = orderMapper.historyOrder(limitPageVo.getFiled(),limitPageVo.getPageNum() * limitPageVo.getLen(),limitPageVo.getLen(),timeCurrent);
         limitPageVo.setCount(orderScriptVos.size());
         limitPageVo.setListData(orderScriptVos);
+        limitPageVo.setCount(count);
         result.setStatus(true);
         result.setMsg("历史订单查询完成");
         result.setCode(ApplicationEnum.SUCCESS.getCode());
@@ -117,9 +120,12 @@ public class OrderServiceImpl implements IOrderService {
         Result result = new Result();
         //参数 用户id  分页参数  当前时间戳
         Long timeCurrent = MoreUtils.getCurrentTime();
-        List<OrderScriptVo> orderScriptVos = orderMapper.newHistoryOrder(limitPageVo.getFiled(),limitPageVo.getPageNum() * 10,timeCurrent);
+        //查询数据的总条数
+        Integer count = orderMapper.getNewOrderCount(limitPageVo.getFiled(),timeCurrent);
+        List<OrderScriptVo> orderScriptVos = orderMapper.newHistoryOrder(limitPageVo.getFiled(),limitPageVo.getPageNum() * limitPageVo.getLen(),limitPageVo.getLen(),timeCurrent);
         limitPageVo.setCount(orderScriptVos.size());
         limitPageVo.setListData(orderScriptVos);
+        limitPageVo.setCount(count);
         result.setStatus(true);
         result.setMsg("最新订单查询完成");
         result.setCode(ApplicationEnum.SUCCESS.getCode());

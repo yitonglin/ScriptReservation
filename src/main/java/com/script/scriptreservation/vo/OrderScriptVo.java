@@ -31,4 +31,7 @@ public class OrderScriptVo {
     //剧本ID
     private String scriptId;
 
+    //订单金额
+    private Integer orderMoney;
+
 }

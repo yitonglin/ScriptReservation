@@ -24,7 +24,7 @@ public class ScriptArticleImpl implements IScriptArticleService {
             //此时存在点赞或者点踩数据，此时直接更新状态即可
             scriptArticleMapper.updateScriptArticle(scriptArticle);
             result.setStatus(true);
-            result.setMsg("状态更新完成");
+            result.setMsg("您只能点赞或者点踩，此时的状态更新完成");
             result.setCode(ApplicationEnum.SUCCESS.getCode());
         } else if (dataCount == 0){
             //此时无点赞点踩数据，直接新增数据即可

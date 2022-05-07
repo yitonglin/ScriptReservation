@@ -103,6 +103,33 @@
     WHERE
       category_id = #{filed}
   </select>
+    <select id="getScriptCount" resultType="java.lang.Integer" parameterType="string">
+      SELECT
+        COUNT( 1 )
+      FROM
+        scriptArticle
+      WHERE
+        script_id = #{scriptId}
+    </select>
+  <select id="getScriptGoodCount" resultType="java.lang.Integer" parameterType="string">
+      SELECT
+        COUNT( 1 )
+      FROM
+        scriptArticle
+      WHERE
+        script_id = #{scriptId}
+        AND `status` = 0
+    </select>
+  <select id="getScriptPoorCount" resultType="java.lang.Integer" parameterType="string">
+      SELECT
+        COUNT( 1 )
+      FROM
+        scriptArticle
+      WHERE
+        script_id = #{scriptId}
+        AND `status` = 1
+    </select>
+
 
 
 </mapper>

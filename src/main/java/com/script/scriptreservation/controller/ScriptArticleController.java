@@ -20,6 +20,7 @@ public class ScriptArticleController {
 
     /**
      * 点赞或点踩  取决去status参数  0为点赞 1为点踩 数据只传用户id 剧本id 状态    即可
+     * 此处的逻辑已经包含重复点击的问题了   用户哪怕重复点击也不会有多个点赞记录下来  只会有一条记录
      * @param scriptArticle
      * @return
      */
