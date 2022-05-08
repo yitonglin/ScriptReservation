@@ -85,7 +85,10 @@ public class ScriptServiceImpl implements IScriptService {
         //剧本差评数
         Integer poorCount = scriptMapper.getScriptPoorCount(scriptCollectionDto.getScriptId());
         //评分计算
-        double fraction = goodCount/count;
+        double fraction = 0;
+        if (count != 0){
+            fraction = goodCount/count;
+        }
         ScriptVo scriptVo = new ScriptVo();
         BeanUtils.copyProperties(script,scriptVo);
         scriptVo.setCount(count);
