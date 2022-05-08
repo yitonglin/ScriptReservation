@@ -5,6 +5,7 @@ import com.script.scriptreservation.service.IScriptService;
 import com.script.scriptreservation.vo.LimitPageVo;
 import com.script.scriptreservation.vo.Result;
 import com.script.scriptreservation.vo.RoomScriptVO;
+import com.script.scriptreservation.vo.UserScriptVo;
 import org.apache.logging.log4j.util.PerformanceSensitive;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -55,6 +56,14 @@ public class ScriptController {
     @PostMapping("scriptInfo")
     public Result scriptInfo(ScriptCollectionDto scriptCollectionDto){
         return scriptService.scriptInfo(scriptCollectionDto);
+    }
+
+    /**
+     * 剧本与用户点赞点踩收藏信息渲染
+     */
+    @PostMapping("getUserScript")
+    public Result getUserScript(UserScriptVo userScriptVo){
+        return scriptService.getUserScript(userScriptVo);
     }
 
     /**

@@ -55,6 +55,13 @@
     update script set look_number=look_number+1 where id=#{scriptId};
   </update>
 
+  <update id="setScriptReplyNumberPlus" parameterType="string">
+    UPDATE script
+    SET reply_number = reply_number + 1
+    WHERE
+      id = #{scriptId}
+  </update>
+
   <select id="serachScript" resultMap="BaseResultMap" parameterType="com.script.scriptreservation.vo.LimitPageVo">
     SELECT *
     FROM script
@@ -129,7 +136,15 @@
         script_id = #{scriptId}
         AND `status` = 1
     </select>
-
+  <select id="getGoodStatu" resultType="java.lang.Integer" parameterType="com.script.scriptreservation.vo.UserScriptVo">
+      SELECT
+          `status`
+      FROM
+          scriptArticle
+      WHERE
+          script_id = #{scriptId}
+        AND user_id = #{userId}
+  </select>
 
 
 </mapper>

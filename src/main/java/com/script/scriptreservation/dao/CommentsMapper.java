@@ -12,4 +12,5 @@ public interface CommentsMapper extends Mapper<Comments> {
     List<CommentsVo> personalComments(String id);
     List<Comments> scriptComments(LimitPageVo limitPageVo);
     Integer commentsCount(String scriptId);
+    String getUserName(String userId);
 }

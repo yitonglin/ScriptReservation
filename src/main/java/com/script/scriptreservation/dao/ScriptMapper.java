@@ -4,6 +4,7 @@ import com.script.scriptreservation.dto.ScriptCollectionDto;
 import com.script.scriptreservation.po.Script;
 import com.script.scriptreservation.vo.LimitPageVo;
 import com.script.scriptreservation.vo.Result;
+import com.script.scriptreservation.vo.UserScriptVo;
 import tk.mybatis.mapper.common.Mapper;
 
 import java.util.List;
@@ -18,6 +19,7 @@ public interface ScriptMapper extends Mapper<Script> {
     Integer serachScriptCount(LimitPageVo limitPageVo);
 
     List<Script> getIndexScript(LimitPageVo limitPageVo);
+    Integer getGoodStatu(UserScriptVo userScriptVo);
 
     Integer getIndexScriptCount(LimitPageVo limitPageVo);
 
@@ -25,4 +27,5 @@ public interface ScriptMapper extends Mapper<Script> {
     Integer getScriptCount(String scriptId);
     Integer getScriptGoodCount(String scriptId);
     Integer getScriptPoorCount(String scriptId);
+    void setScriptReplyNumberPlus(String scriptId);
 }

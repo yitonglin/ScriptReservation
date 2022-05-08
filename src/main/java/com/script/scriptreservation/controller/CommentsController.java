@@ -1,5 +1,6 @@
 package com.script.scriptreservation.controller;
 
+import com.script.scriptreservation.po.Comments;
 import com.script.scriptreservation.service.IcommentsService;
 import com.script.scriptreservation.vo.LimitPageVo;
 import com.script.scriptreservation.vo.Result;
@@ -24,4 +25,21 @@ public class CommentsController {
     public Result scriptComments(LimitPageVo limitPageVo){
         return commentsService.scriptComments(limitPageVo);
     }
+
+    /**
+     * 创建评论
+     * @param comments
+     * @return
+     */
+    @PostMapping("createComments")
+    public Result createComments(Comments comments){
+        return commentsService.createComments(comments);
+    }
+
+    @PostMapping("getUserName")
+    public Result getUserName(String userId){
+        return commentsService.getUserName(userId);
+    }
+
+
 }

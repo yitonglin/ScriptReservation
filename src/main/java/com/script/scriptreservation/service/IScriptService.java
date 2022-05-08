@@ -4,6 +4,7 @@ import com.script.scriptreservation.dto.ScriptCollectionDto;
 import com.script.scriptreservation.vo.LimitPageVo;
 import com.script.scriptreservation.vo.Result;
 import com.script.scriptreservation.vo.RoomScriptVO;
+import com.script.scriptreservation.vo.UserScriptVo;
 
 public interface IScriptService {
     Result greatNumPlus(String id);
@@ -16,4 +17,5 @@ public interface IScriptService {
     Result serachScript(LimitPageVo limitPageVo);
     Result getScriptIdFreeRoom(String scriptId);
     Result getIndexScript(LimitPageVo limitPageVo);
+    Result getUserScript(UserScriptVo userScriptVo);
 }

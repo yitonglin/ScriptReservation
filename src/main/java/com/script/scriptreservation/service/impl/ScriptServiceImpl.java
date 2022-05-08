@@ -1,18 +1,14 @@
 package com.script.scriptreservation.service.impl;
 
-import com.script.scriptreservation.dao.OrderMapper;
-import com.script.scriptreservation.dao.RecordMapper;
-import com.script.scriptreservation.dao.RoomMapper;
-import com.script.scriptreservation.dao.ScriptMapper;
+import com.script.scriptreservation.dao.*;
 import com.script.scriptreservation.dto.ScriptCollectionDto;
 import com.script.scriptreservation.enums.ApplicationEnum;
 import com.script.scriptreservation.po.*;
 import com.script.scriptreservation.service.IScriptService;
 import com.script.scriptreservation.utils.MoreUtils;
-import com.script.scriptreservation.vo.LimitPageVo;
-import com.script.scriptreservation.vo.Result;
-import com.script.scriptreservation.vo.RoomScriptVO;
+import com.script.scriptreservation.vo.*;
 import com.sun.org.apache.xpath.internal.operations.Or;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,6 +20,9 @@ public class ScriptServiceImpl implements IScriptService {
 
     @Autowired
     private ScriptMapper scriptMapper;
+
+    @Autowired
+    private CollectionMapper collectionMapper;
 
     @Autowired
     private RoomMapper roomMapper;
@@ -87,12 +86,12 @@ public class ScriptServiceImpl implements IScriptService {
         Integer poorCount = scriptMapper.getScriptPoorCount(scriptCollectionDto.getScriptId());
         //评分计算
         double fraction = goodCount/count;
-        script.setCount(count);
-        script.setGoodCount(goodCount);
-        script.setPoorCount(poorCount);
-        script.setFraction(fraction);
-
-
+        ScriptVo scriptVo = new ScriptVo();
+        BeanUtils.copyProperties(script,scriptVo);
+        scriptVo.setCount(count);
+        scriptVo.setGoodCount(goodCount);
+        scriptVo.setPoorCount(poorCount);
+        scriptVo.setFraction(fraction);
         //剧本浏览量加一
         scriptMapper.updateRecordPlus(scriptCollectionDto.getScriptId());
         //用户足迹记录
@@ -331,6 +330,21 @@ public class ScriptServiceImpl implements IScriptService {
         result.setMsg("列表查询成功");
         result.setCode(ApplicationEnum.SUCCESS.getCode());
         result.setData(limitPageVo);
+        return result;
+    }
+
+    @Override
+    public Result getUserScript(UserScriptVo userScriptVo) {
+        Result result = new Result();
+        //查询点赞情况
+        Integer goodStatu = scriptMapper.getGoodStatu(userScriptVo);
+        userScriptVo.setGoodStatus(goodStatu);
+        //获取收藏情况
+        Integer collectionStatu = collectionMapper.getCollectionStatu(userScriptVo);
+        userScriptVo.setCollectionStatus(collectionStatu);
+        result.setMsg("用户点赞收藏信息查询成功");
+        result.setCode(ApplicationEnum.SUCCESS.getCode());
+        result.setData(userScriptVo);
         return result;
     }
 
