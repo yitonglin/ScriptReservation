@@ -48,9 +48,12 @@
     FROM
         room r
             LEFT JOIN script s ON s.id = r.script
-    WHERE
-        r.category_id = #{category}
+    WHERE 1 = 1
+      <if test="category != 0 and category !='' ">
+          and r.category_id = #{category}
+      </if>
       AND r.STATUS = 1
+        LIMIT 0,5;
   </select>
     <select id="getScriptIdFreeRoom" resultType="com.script.scriptreservation.po.Room" parameterType="string">
         SELECT
