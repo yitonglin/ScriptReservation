@@ -34,21 +34,39 @@ public class ScriptServiceImpl implements IScriptService {
     private RecordMapper recordMapper;
 
     @Override
-    public Result greatNumPlus(String id) {
+    public Result greatNumPlus(ScriptArticle scriptArticle) {
         Result result = new Result();
-        scriptMapper.greatNumPlus(id);
+        scriptArticle.setID(MoreUtils.createId());
+        //首先判断是否已经点赞 如果已经点赞完毕的话则返回取消点赞成功
+        Integer integerResult =  scriptMapper.getGoodStatus(scriptArticle);
+        if ( integerResult ==0 ){
+            result.setMsg("点赞成功");
+            scriptMapper.greatNumPlus(scriptArticle);
+        }else {
+            result.setMsg("取消点赞成功");
+            //删除点赞信息
+            scriptMapper.deleteGoodScript(scriptArticle);
+        }
         result.setStatus(true);
-        result.setMsg("点赞成功");
         result.setCode(ApplicationEnum.SUCCESS.getCode());
         return result;
     }
 
     @Override
-    public Result stepNum(String id) {
+    public Result stepNum(ScriptArticle scriptArticle) {
         Result result = new Result();
-        scriptMapper.stepNum(id);
+        scriptArticle.setID(MoreUtils.createId());
+        //首先判断是否已经点踩 如果已经点踩完毕的话则返回取消点赞成功
+        Integer integerResult =  scriptMapper.getPoorStatus(scriptArticle);
+        if ( integerResult == 0 ){
+            result.setMsg("点踩成功");
+            scriptMapper.stepNum(scriptArticle);
+        }else {
+            result.setMsg("取消点踩成功");
+            //删除点踩息
+            scriptMapper.deleteGoodScript(scriptArticle);
+        }
         result.setStatus(true);
-        result.setMsg("点踩成功");
         result.setCode(ApplicationEnum.SUCCESS.getCode());
         return result;
     }
@@ -56,18 +74,28 @@ public class ScriptServiceImpl implements IScriptService {
     @Override
     public Result scriptCollection(ScriptCollectionDto scriptCollectionDto) {
         Result result = new Result();
-        scriptCollectionDto.setCollectionId(MoreUtils.createId());
-        scriptCollectionDto.setCollectionTime(MoreUtils.getCurrentTime());
-        Integer resultNum = scriptMapper.scriptCollection(scriptCollectionDto);
-        if (resultNum > 0){
+        //判断是否已收藏 已收藏则取消收藏
+        Integer integerResult = scriptMapper.getCollectionCount(scriptCollectionDto);
+        if (integerResult == 0){
+            scriptCollectionDto.setCollectionId(MoreUtils.createId());
+            scriptCollectionDto.setCollectionTime(MoreUtils.getCurrentTime());
+            Integer resultNum = scriptMapper.scriptCollection(scriptCollectionDto);
+            if (resultNum > 0){
+                result.setStatus(true);
+                result.setMsg("收藏成功");
+                result.setCode(ApplicationEnum.SUCCESS.getCode());
+            } else {
+                result.setStatus(false);
+                result.setMsg("收藏失败");
+                result.setCode(ApplicationEnum.FAIT.getCode());
+            }
+        }else {
+            scriptMapper.deleteCollectionByuser(scriptCollectionDto);
             result.setStatus(true);
-            result.setMsg("收藏成功");
+            result.setMsg("取消收藏成功");
             result.setCode(ApplicationEnum.SUCCESS.getCode());
-        } else {
-            result.setStatus(false);
-            result.setMsg("收藏失败");
-            result.setCode(ApplicationEnum.FAIT.getCode());
         }
+
 
         return result;
     }

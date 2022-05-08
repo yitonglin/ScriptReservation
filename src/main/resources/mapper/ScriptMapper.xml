@@ -36,18 +36,32 @@
   </insert>
 
 
-    <update id="greatNumPlus" parameterType="string">
-    UPDATE `script`
-    SET great_num = great_num + 1
-    WHERE
-      id = #{id}
+    <update id="greatNumPlus" parameterType="com.script.scriptreservation.po.ScriptArticle">
+      INSERT INTO scriptArticle ( id, user_id, script_id, `status` )
+      VALUES
+        ( #{ID}, #{userId}, #{scriptId}, 0);
   </update>
-
-  <update id="stepNum" parameterType="string">
-    UPDATE `script`
-    SET step_num = step_num + 1
+  <delete id="deleteGoodScript" parameterType="com.script.scriptreservation.po.ScriptArticle">
+    DELETE
+    FROM
+      scriptArticle
     WHERE
-      id = #{id}
+      user_id = #{userId}
+      AND script_id = #{scriptId}
+  </delete>
+  <delete id="deleteCollectionByuser" parameterType="com.script.scriptreservation.dto.ScriptCollectionDto">
+    DELETE
+    FROM
+      `collection`
+    WHERE
+      user_id = #{userId}
+      AND script_id = #{scriptId}
+  </delete>
+
+  <update id="stepNum" parameterType="com.script.scriptreservation.po.ScriptArticle">
+    INSERT INTO scriptArticle ( id, user_id, script_id, `status` )
+    VALUES
+      ( #{ID}, #{userId}, #{scriptId}, 1);
   </update>
 
 <!--  剧本浏览量加一-->
@@ -144,6 +158,35 @@
       WHERE
           script_id = #{scriptId}
         AND user_id = #{userId}
+  </select>
+  <select id="getGoodStatus" resultType="java.lang.Integer" parameterType="com.script.scriptreservation.po.ScriptArticle">
+    SELECT
+      COUNT( 1 )
+    FROM
+      scriptArticle
+    WHERE
+      user_id = #{userId}
+      AND script_id = #{scriptId}
+      AND `status` = 0;
+  </select>
+  <select id="getPoorStatus" resultType="java.lang.Integer" parameterType="com.script.scriptreservation.po.ScriptArticle">
+    SELECT
+      COUNT( 1 )
+    FROM
+      scriptArticle
+    WHERE
+      user_id = #{userId}
+      AND script_id = #{scriptId}
+      AND `status` = 1;
+  </select>
+  <select id="getCollectionCount" resultType="java.lang.Integer" parameterType="com.script.scriptreservation.dto.ScriptCollectionDto">
+    SELECT
+      COUNT( 1 )
+    FROM
+      collection
+    WHERE
+      user_id = #{userId}
+      AND script_id = #{scriptId}
   </select>
 
 

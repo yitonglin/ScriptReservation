@@ -1,6 +1,7 @@
 package com.script.scriptreservation.controller;
 
 import com.script.scriptreservation.dto.ScriptCollectionDto;
+import com.script.scriptreservation.po.ScriptArticle;
 import com.script.scriptreservation.service.IScriptService;
 import com.script.scriptreservation.vo.LimitPageVo;
 import com.script.scriptreservation.vo.Result;
@@ -21,22 +22,22 @@ public class ScriptController {
 
     /**
      * 剧本点赞方法
-     * @param id
+     * @param
      * @return
      */
     @PostMapping("GreatNumPlus")
-    public Result greatNumPlus(String id){
-        return scriptService.greatNumPlus(id);
+    public Result greatNumPlus(ScriptArticle scriptArticle){
+        return scriptService.greatNumPlus(scriptArticle);
     }
 
     /**
      * 剧本点踩方法
-     * @param id
+     * @param
      * @return
      */
     @PostMapping("stepNum")
-    public Result stepNum(String id){
-        return scriptService.stepNum(id);
+    public Result stepNum(ScriptArticle scriptArticle){
+        return scriptService.stepNum(scriptArticle);
     }
 
     /**
