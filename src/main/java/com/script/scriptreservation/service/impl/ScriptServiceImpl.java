@@ -133,7 +133,7 @@ public class ScriptServiceImpl implements IScriptService {
             result.setStatus(true);
             result.setMsg("剧本查询成功");
             result.setCode(ApplicationEnum.SUCCESS.getCode());
-            result.setData(script);
+            result.setData(scriptVo);
         } else {
             result.setStatus(false);
             result.setMsg("剧本查询失败");
