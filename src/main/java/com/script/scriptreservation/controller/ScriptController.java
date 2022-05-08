@@ -1,6 +1,7 @@
 package com.script.scriptreservation.controller;
 
 import com.script.scriptreservation.dto.ScriptCollectionDto;
+import com.script.scriptreservation.po.Record;
 import com.script.scriptreservation.po.ScriptArticle;
 import com.script.scriptreservation.service.IScriptService;
 import com.script.scriptreservation.vo.LimitPageVo;
@@ -135,6 +136,15 @@ public class ScriptController {
         return scriptService.getIndexScript(limitPageVo);
     }
 
+    /**
+     * 足迹功能
+     * @param record
+     * @return
+     */
+    @PostMapping("createRecord")
+    public Result createRecord(Record record){
+        return scriptService.createRecord(record);
+    }
 
 
 }

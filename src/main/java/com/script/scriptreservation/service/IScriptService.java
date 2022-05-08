@@ -1,6 +1,7 @@
 package com.script.scriptreservation.service;
 
 import com.script.scriptreservation.dto.ScriptCollectionDto;
+import com.script.scriptreservation.po.Record;
 import com.script.scriptreservation.po.ScriptArticle;
 import com.script.scriptreservation.vo.LimitPageVo;
 import com.script.scriptreservation.vo.Result;
@@ -19,4 +20,5 @@ public interface IScriptService {
     Result getScriptIdFreeRoom(String scriptId);
     Result getIndexScript(LimitPageVo limitPageVo);
     Result getUserScript(UserScriptVo userScriptVo);
+    Result createRecord(Record record);
 }

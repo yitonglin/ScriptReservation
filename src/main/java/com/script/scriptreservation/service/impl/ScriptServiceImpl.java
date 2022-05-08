@@ -118,20 +118,17 @@ public class ScriptServiceImpl implements IScriptService {
             fraction = goodCount/count;
         }
         ScriptVo scriptVo = new ScriptVo();
+        if (script == null){
+            result.setStatus(false);
+            result.setMsg("BeanUtiles 源对象为空");
+            result.setCode(ApplicationEnum.FAIT.getCode());
+            return result;
+        }
         BeanUtils.copyProperties(script,scriptVo);
         scriptVo.setCount(count);
         scriptVo.setGoodCount(goodCount);
         scriptVo.setPoorCount(poorCount);
         scriptVo.setFraction(fraction);
-        //剧本浏览量加一
-        scriptMapper.updateRecordPlus(scriptCollectionDto.getScriptId());
-        //用户足迹记录
-        Record record = new Record();
-        record.setScriptId(scriptCollectionDto.getScriptId());
-        record.setUserId(scriptCollectionDto.getUserId());
-        record.setId(MoreUtils.createId());
-        record.setTime(MoreUtils.getCurrentTime());
-        recordMapper.insert(record);
         if ( script != null){
             result.setStatus(true);
             result.setMsg("剧本查询成功");
@@ -376,6 +373,21 @@ public class ScriptServiceImpl implements IScriptService {
         result.setMsg("用户点赞收藏信息查询成功");
         result.setCode(ApplicationEnum.SUCCESS.getCode());
         result.setData(userScriptVo);
+        return result;
+    }
+
+    @Override
+    public Result createRecord(Record record) {
+        Result result =  new Result();
+        //剧本浏览量加一
+        scriptMapper.updateRecordPlus(record.getScriptId());
+        //用户足迹记录
+        record.setId(MoreUtils.createId());
+        record.setTime(MoreUtils.getCurrentTime());
+        recordMapper.insert(record);
+        result.setMsg("足迹记录成功");
+        result.setCode(ApplicationEnum.SUCCESS.getCode());
+        result.setStatus(true);
         return result;
     }
 
