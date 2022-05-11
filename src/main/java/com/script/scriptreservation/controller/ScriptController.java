@@ -60,6 +60,8 @@ public class ScriptController {
         return scriptService.scriptInfo(scriptCollectionDto);
     }
 
+
+
     /**
      * 剧本与用户点赞点踩收藏信息渲染
      */

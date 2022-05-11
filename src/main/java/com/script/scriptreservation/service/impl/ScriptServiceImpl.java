@@ -36,6 +36,12 @@ public class ScriptServiceImpl implements IScriptService {
     @Override
     public Result greatNumPlus(ScriptArticle scriptArticle) {
         Result result = new Result();
+        Integer integerResult1 =  scriptMapper.getPoorStatus(scriptArticle);
+        if ( integerResult1 !=0 ){
+            result.setMsg("点踩后不可点赞");
+            result.setStatus(false);
+            result.setCode(ApplicationEnum.FAIT.getCode());
+        }
         scriptArticle.setID(MoreUtils.createId());
         //首先判断是否已经点赞 如果已经点赞完毕的话则返回取消点赞成功
         Integer integerResult =  scriptMapper.getGoodStatus(scriptArticle);
@@ -55,6 +61,13 @@ public class ScriptServiceImpl implements IScriptService {
     @Override
     public Result stepNum(ScriptArticle scriptArticle) {
         Result result = new Result();
+        //首先判断是否已经点赞 如果已经点赞完毕则返回点赞后不可点踩
+        Integer integerResult1 =  scriptMapper.getGoodStatus(scriptArticle);
+        if ( integerResult1 !=0 ){
+            result.setMsg("点赞后不可点踩");
+            result.setStatus(false);
+            result.setCode(ApplicationEnum.FAIT.getCode());
+        }
         scriptArticle.setID(MoreUtils.createId());
         //首先判断是否已经点踩 如果已经点踩完毕的话则返回取消点赞成功
         Integer integerResult =  scriptMapper.getPoorStatus(scriptArticle);
