@@ -16,6 +16,9 @@ public class OrderScriptVo {
     //预约开始时间
     private Long forwardDate;
 
+    //订单编号
+    private String orderNumId;
+
     //预约结束时间
     private Long forwardEndDate;
 
