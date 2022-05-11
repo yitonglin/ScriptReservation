@@ -110,7 +110,7 @@ public class UserServiceImpl implements IUserService {
         //总条数计算
         List<ScriptRecord> recordList1 = recordMapper.lookRecord1(limitPageVo);
         limitPageVo.setCount(recordList1.size());
-        limitPageVo.setListData(recordList);
+        limitPageVo.setListData(limitPageVo);
         result.setStatus(true);
         result.setMsg("查询成功");
         result.setData(recordList);
@@ -130,7 +130,7 @@ public class UserServiceImpl implements IUserService {
         limitPageVo.setListData(collectionVos);
         result.setStatus(true);
         result.setMsg("剧本收藏查询成功");
-        result.setData(collectionVos);
+        result.setData(limitPageVo);
         result.setCode(ApplicationEnum.SUCCESS.getCode());
         return result;
     }
@@ -147,7 +147,7 @@ public class UserServiceImpl implements IUserService {
         limitPageVo.setListData(commentsVos);
         result.setStatus(true);
         result.setMsg("个人评论查询成功");
-        result.setData(commentsVos);
+        result.setData(limitPageVo);
         result.setCode(ApplicationEnum.SUCCESS.getCode());
         return result;
     }
