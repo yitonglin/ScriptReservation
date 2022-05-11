@@ -57,7 +57,8 @@
           o.order_flag AS orderFlag,
           o.script_id AS scriptId,
           o.forward_date AS forwardDate,
-          o.forward_end_date AS forwardEndDate
+          o.forward_end_date AS forwardEndDate,
+          o.order_money AS orderMoney
       FROM
           `order` o
               LEFT JOIN script s ON s.id = o.script_id

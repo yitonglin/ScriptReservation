@@ -4,6 +4,7 @@ import com.script.scriptreservation.po.User;
 import com.script.scriptreservation.service.IUserService;
 import com.script.scriptreservation.utils.MoreUtils;
 import com.script.scriptreservation.utils.ValidateCodeUtil;
+import com.script.scriptreservation.vo.LimitPageVo;
 import com.script.scriptreservation.vo.MoneyVo;
 import com.script.scriptreservation.vo.Result;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -125,22 +126,22 @@ public class UserController {
 
     /**
      * 个人浏览记录查询
-     * @param id
+     * @param
      * @return
      */
     @PostMapping("lookRecord")
-    public Result lookRecord(String id){
-        return userService.lookRecord(id);
+    public Result lookRecord(LimitPageVo limitPageVo){
+        return userService.lookRecord(limitPageVo);
     }
 
     /**
      * 个人收藏查询
-     * @param id
+     * @param
      * @return
      */
     @PostMapping("personalCollection")
-    public Result personalCollection(String id){
-        return userService.personalCollection(id);
+    public Result personalCollection(LimitPageVo limitPageVo){
+        return userService.personalCollection(limitPageVo);
     }
 
     /**

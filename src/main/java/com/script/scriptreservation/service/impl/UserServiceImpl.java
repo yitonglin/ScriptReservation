@@ -102,20 +102,32 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public Result lookRecord(String id) {
+    public Result lookRecord(LimitPageVo limitPageVo) {
         Result result = new Result();
-        List<ScriptRecord> recordList = recordMapper.lookRecord(id);
+        //计算查询开始的位置
+        limitPageVo.setPageCount(limitPageVo.getPageNum() * limitPageVo.getLen());
+        List<ScriptRecord> recordList = recordMapper.lookRecord(limitPageVo);
+        //总条数计算
+        List<ScriptRecord> recordList1 = recordMapper.lookRecord1(limitPageVo);
+        limitPageVo.setCount(recordList1.size());
+        limitPageVo.setListData(recordList);
         result.setStatus(true);
-        result.setMsg("浏览记录查询成功");
+        result.setMsg("查询成功");
         result.setData(recordList);
         result.setCode(ApplicationEnum.SUCCESS.getCode());
         return result;
     }
 
     @Override
-    public Result personalCollection(String id) {
+    public Result personalCollection(LimitPageVo limitPageVo) {
         Result result = new Result();
-        List<CollectionVo> collectionVos = collectionMapper.personalCollection(id);
+        //计算查询开始的位置
+        limitPageVo.setPageCount(limitPageVo.getPageNum() * limitPageVo.getLen());
+        List<CollectionVo> collectionVos = collectionMapper.personalCollection(limitPageVo);
+        //总条数计算
+        List<CollectionVo> collectionVos1 = collectionMapper.personalCollection1(limitPageVo);
+        limitPageVo.setCount(collectionVos1.size());
+        limitPageVo.setListData(collectionVos);
         result.setStatus(true);
         result.setMsg("剧本收藏查询成功");
         result.setData(collectionVos);

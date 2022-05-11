@@ -9,7 +9,7 @@
     <result column="script_id" jdbcType="VARCHAR" property="scriptId" />
     <result column="user_id" jdbcType="VARCHAR" property="userId" />
   </resultMap>
-  <select id="personalCollection" resultType="com.script.scriptreservation.vo.CollectionVo" parameterType="string">
+  <select id="personalCollection" resultType="com.script.scriptreservation.vo.CollectionVo" parameterType="com.script.scriptreservation.vo.LimitPageVo">
     SELECT
       s.script_name AS scriptName,
       c.collection_time AS collectionTime,
@@ -18,7 +18,20 @@
       collection c
         LEFT JOIN script s ON c.script_id = s.id
     WHERE
-      c.user_id = #{id}
+      c.user_id = #{filed}
+      LIMIT #{i},#{len}
+  </select>
+
+  <select id="personalCollection1" resultType="com.script.scriptreservation.vo.CollectionVo" parameterType="com.script.scriptreservation.vo.LimitPageVo">
+    SELECT
+      s.script_name AS scriptName,
+      c.collection_time AS collectionTime,
+      c.script_id AS scriptId
+    FROM
+      collection c
+        LEFT JOIN script s ON c.script_id = s.id
+    WHERE
+      c.user_id = #{filed}
   </select>
     <select id="getCollectionStatu" resultType="java.lang.Integer">
       SELECT

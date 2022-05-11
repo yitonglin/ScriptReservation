@@ -1,6 +1,7 @@
 package com.script.scriptreservation.service;
 
 import com.script.scriptreservation.po.User;
+import com.script.scriptreservation.vo.LimitPageVo;
 import com.script.scriptreservation.vo.MoneyVo;
 import com.script.scriptreservation.vo.Result;
 
@@ -11,8 +12,8 @@ public interface IUserService {
     Result login(User user);
     Result updateUserPassword(User user);
     void emailActive(User user);
-    Result lookRecord(String id);
-    Result personalCollection(String id);
+    Result lookRecord(LimitPageVo limitPageVo);
+    Result personalCollection(LimitPageVo limitPageVo);
     Result personalComments(String id);
     Result updateUserHeadImage(User user);
     Result payMoney(MoneyVo moneyVo);
