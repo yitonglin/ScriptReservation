@@ -110,10 +110,10 @@ public class UserServiceImpl implements IUserService {
         //总条数计算
         List<ScriptRecord> recordList1 = recordMapper.lookRecord1(limitPageVo);
         limitPageVo.setCount(recordList1.size());
-        limitPageVo.setListData(limitPageVo);
+        limitPageVo.setListData(recordList);
         result.setStatus(true);
         result.setMsg("查询成功");
-        result.setData(recordList);
+        result.setData(limitPageVo);
         result.setCode(ApplicationEnum.SUCCESS.getCode());
         return result;
     }
