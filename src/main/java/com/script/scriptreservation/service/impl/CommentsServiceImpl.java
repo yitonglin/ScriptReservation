@@ -31,7 +31,7 @@ public class CommentsServiceImpl implements IcommentsService {
         List<Comments> comments = commentsMapper.scriptComments(limitPageVo);
         //总条数计算
         Integer len = commentsMapper.commentsCount(limitPageVo.getFiled());
-        limitPageVo.setCount(comments.size());
+        limitPageVo.setCount(len);
         limitPageVo.setListData(comments);
         result.setStatus(true);
         result.setMsg("剧本查询成功");
