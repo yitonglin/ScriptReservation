@@ -21,7 +21,7 @@
         LEFT JOIN script s ON r.script_id = s.id
     WHERE
       r.user_id = #{filed}
-      LIMIT #{i},#{len}
+      LIMIT #{pageCount},#{len}
   </select>
   <select id="lookRecord1" parameterType="com.script.scriptreservation.vo.LimitPageVo" resultType="com.script.scriptreservation.vo.ScriptRecord">
     SELECT

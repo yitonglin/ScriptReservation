@@ -19,7 +19,7 @@
         LEFT JOIN script s ON c.script_id = s.id
     WHERE
       c.user_id = #{filed}
-      LIMIT #{i},#{len}
+      LIMIT #{pageCount},#{len}
   </select>
 
   <select id="personalCollection1" resultType="com.script.scriptreservation.vo.CollectionVo" parameterType="com.script.scriptreservation.vo.LimitPageVo">
