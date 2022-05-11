@@ -179,7 +179,8 @@ public class ScriptServiceImpl implements IScriptService {
             order.setOrderFlag(0);
             order.setOrderNumber(MoreUtils.createId());
             order.setForwardNum(roomScriptVO.getPersonNum());
-            order.setForwardDate(MoreUtils.getCurrentTime());
+            order.setForwardDate(roomScriptVO.getStartTime());//剧本开始时间
+            order.setForwardEndDate(roomScriptVO.getEndTime());//剧本结束时间
             order.setOrderMoney(roomScriptVO.getPersonNum() * roomScriptVO.getScriptMoney());
             order.setCreateTime(MoreUtils.getCurrentTime());
             //默认为拼场成功
@@ -242,7 +243,8 @@ public class ScriptServiceImpl implements IScriptService {
             order.setOrderFlag(1);
             order.setOrderNumber(MoreUtils.createId());
             order.setForwardNum(roomScriptVO.getPersonNum());
-            order.setForwardDate(MoreUtils.getCurrentTime());
+            order.setForwardDate(roomScriptVO.getStartTime());//剧本开始时间
+            order.setForwardEndDate(roomScriptVO.getEndTime());//剧本结束时间
             order.setOrderMoney(roomScriptVO.getPersonNum() * roomScriptVO.getScriptMoney());
             order.setCreateTime(MoreUtils.getCurrentTime());
             order.setRefundTime(MoreUtils.getCurrentTime());
@@ -296,7 +298,8 @@ public class ScriptServiceImpl implements IScriptService {
             order.setOrderFlag(0);
             order.setOrderNumber(MoreUtils.createId());
             order.setForwardNum(roomScriptVO.getPersonNum());
-            order.setForwardDate(MoreUtils.getCurrentTime());
+            order.setForwardDate(roomScriptVO.getStartTime());//剧本开始时间
+            order.setForwardEndDate(roomScriptVO.getEndTime());//剧本结束时间
             order.setOrderMoney(roomScriptVO.getPersonNum() * roomScriptVO.getScriptMoney());
             order.setCreateTime(MoreUtils.getCurrentTime());
             //默认为拼场成功

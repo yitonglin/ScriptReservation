@@ -32,6 +32,9 @@ public class RoomScriptVO {
     //剧本开始时间
     private Long startTime;
 
+    //剧本结束时间
+    private Long endTime;
+
     private String scriptName;
 
 
