@@ -60,7 +60,10 @@ public class ScriptController {
         return scriptService.scriptInfo(scriptCollectionDto);
     }
 
-
+//    @PostMapping("getScriptByUserInfo")
+//    public Result getScriptByUserInfo(ScriptCollectionDto scriptCollectionDto){
+//        return scriptService.getScriptByUserInfo(scriptCollectionDto);
+//    }
 
     /**
      * 剧本与用户点赞点踩收藏信息渲染
@@ -147,6 +150,8 @@ public class ScriptController {
     public Result createRecord(Record record){
         return scriptService.createRecord(record);
     }
+
+
 
 
 }

@@ -198,6 +198,17 @@ public class UserServiceImpl implements IUserService {
         return result;
     }
 
+    @Override
+    public Result getUserInfo(String userId) {
+        Result result = new Result();
+        User user = new User();
+        user = userMapper.selectByPrimaryKey(userId);
+        result.setStatus(true);
+        result.setMsg("用户信息查询成功");
+        result.setData(user);
+        return null;
+    }
+
 
 }
 

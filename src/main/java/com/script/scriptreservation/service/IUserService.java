@@ -17,4 +17,5 @@ public interface IUserService {
     Result personalComments(LimitPageVo limitPageVo);
     Result updateUserHeadImage(User user);
     Result payMoney(MoneyVo moneyVo);
+    Result getUserInfo(String userId);
 }

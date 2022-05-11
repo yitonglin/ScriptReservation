@@ -167,7 +167,10 @@ public class UserController {
         return userService.updateUserHeadImage(user);
     }
 
-
+    @PostMapping("getUserInfo")
+    public Result getUserInfo(String userId){
+        return userService.getUserInfo(userId);
+    }
 
 
 
