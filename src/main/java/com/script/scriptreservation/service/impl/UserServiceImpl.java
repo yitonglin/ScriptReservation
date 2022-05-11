@@ -136,9 +136,15 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public Result personalComments(String id) {
+    public Result personalComments(LimitPageVo limitPageVo) {
         Result result = new Result();
-        List<CommentsVo> commentsVos = commentsMapper.personalComments(id);
+        //计算查询开始的位置
+        limitPageVo.setPageCount(limitPageVo.getPageNum() * limitPageVo.getLen());
+        List<CommentsVo> commentsVos = commentsMapper.personalComments(limitPageVo);
+        //总条数计算
+        List<CommentsVo> commentsVos1 = commentsMapper.personalComments1(limitPageVo);
+        limitPageVo.setCount(commentsVos1.size());
+        limitPageVo.setListData(commentsVos);
         result.setStatus(true);
         result.setMsg("个人评论查询成功");
         result.setData(commentsVos);

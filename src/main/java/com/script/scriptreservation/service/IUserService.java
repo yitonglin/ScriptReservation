@@ -14,7 +14,7 @@ public interface IUserService {
     void emailActive(User user);
     Result lookRecord(LimitPageVo limitPageVo);
     Result personalCollection(LimitPageVo limitPageVo);
-    Result personalComments(String id);
+    Result personalComments(LimitPageVo limitPageVo);
     Result updateUserHeadImage(User user);
     Result payMoney(MoneyVo moneyVo);
 }

@@ -9,7 +9,8 @@ import java.util.List;
 
 @org.apache.ibatis.annotations.Mapper
 public interface CommentsMapper extends Mapper<Comments> {
-    List<CommentsVo> personalComments(String id);
+    List<CommentsVo> personalComments(LimitPageVo limitPageVo);
+    List<CommentsVo> personalComments1(LimitPageVo limitPageVo);
     List<Comments> scriptComments(LimitPageVo limitPageVo);
     Integer commentsCount(String scriptId);
     String getUserName(String userId);

@@ -148,8 +148,8 @@ public class UserController {
      * 个人评论查询
      */
     @PostMapping("personalComments")
-    public Result personalComments(String id){
-        return userService.personalComments(id);
+    public Result personalComments(LimitPageVo limitPageVo){
+        return userService.personalComments(limitPageVo);
     }
 
     /**

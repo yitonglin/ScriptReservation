@@ -11,7 +11,7 @@
     <result column="content" jdbcType="VARCHAR" property="content" />
     <result column="time" jdbcType="VARCHAR" property="time" />
   </resultMap>
-    <select id="personalComments" resultType="com.script.scriptreservation.vo.CommentsVo" parameterType="string">
+    <select id="personalComments" resultType="com.script.scriptreservation.vo.CommentsVo" parameterType="com.script.scriptreservation.vo.LimitPageVo">
       SELECT
         s.script_name AS scriptName,
         c.content AS comments,
@@ -21,8 +21,23 @@
         comments c
           LEFT JOIN script s ON c.script_id = s.id
       WHERE
-        c.user_id = #{id}
+        c.user_id = #{filed}
+        LIMIT #{i},#{len}
     </select>
+
+  <select id="personalComments1" resultType="com.script.scriptreservation.vo.CommentsVo" parameterType="com.script.scriptreservation.vo.LimitPageVo">
+      SELECT
+        s.script_name AS scriptName,
+        c.content AS comments,
+        c.script_id AS scriptId,
+        c.time AS commentsTime
+      FROM
+        comments c
+          LEFT JOIN script s ON c.script_id = s.id
+      WHERE
+        c.user_id = #{filed}
+    </select>
+
     <select id="scriptComments" resultMap="BaseResultMap" parameterType="com.script.scriptreservation.vo.LimitPageVo">
       SELECT
         *
