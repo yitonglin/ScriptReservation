@@ -76,6 +76,7 @@ public class RoomServiceImpl implements IRoomService {
         result.setStatus(true);
         result.setMsg("房间查询成功");
         result.setCode(ApplicationEnum.SUCCESS.getCode());
+        result.setData(room);
         return result;
     }
 }
