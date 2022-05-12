@@ -104,8 +104,7 @@ public class Script {
      */
     private Integer stepNum;
 
-    //剧本亮点
-    private String scriptSun;
+
 
     //发行人
     private String createName;
@@ -125,13 +124,6 @@ public class Script {
         this.createUser = createUser;
     }
 
-    public String getScriptSun() {
-        return scriptSun;
-    }
-
-    public void setScriptSun(String scriptSun) {
-        this.scriptSun = scriptSun;
-    }
 
     public String getCreateName() {
         return createName;
