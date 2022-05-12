@@ -189,7 +189,7 @@ public class ScriptServiceImpl implements IScriptService {
             order.setId(MoreUtils.createId());
             order.setUserId(roomScriptVO.getUserId());
             order.setScriptId(roomScriptVO.getScriptId());
-            order.setRoomId(room.getRoomId());
+            order.setRoomId(room.getId());
             order.setOrderFlag(0);
             order.setOrderNumber(MoreUtils.createId());
             order.setForwardNum(roomScriptVO.getPersonNum());
@@ -254,7 +254,7 @@ public class ScriptServiceImpl implements IScriptService {
             order.setId(MoreUtils.createId());
             order.setUserId(roomScriptVO.getUserId());
             order.setScriptId(roomScriptVO.getScriptId());
-            order.setRoomId(room.getRoomId());
+            order.setRoomId(room.getId());
             order.setOrderFlag(1);
             order.setOrderNumber(MoreUtils.createId());
             order.setForwardNum(roomScriptVO.getPersonNum());
@@ -309,7 +309,7 @@ public class ScriptServiceImpl implements IScriptService {
             order.setId(MoreUtils.createId());
             order.setUserId(roomScriptVO.getUserId());
             order.setScriptId(roomScriptVO.getScriptId());
-            order.setRoomId(room.getRoomId());
+            order.setRoomId(room.getId());
             order.setOrderFlag(0);
             order.setOrderNumber(MoreUtils.createId());
             order.setForwardNum(roomScriptVO.getPersonNum());
