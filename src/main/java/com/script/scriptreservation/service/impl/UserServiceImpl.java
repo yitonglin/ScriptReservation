@@ -206,7 +206,7 @@ public class UserServiceImpl implements IUserService {
         result.setStatus(true);
         result.setMsg("用户信息查询成功");
         result.setData(user);
-        return null;
+        return result;
     }
 
 
