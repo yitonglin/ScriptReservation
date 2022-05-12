@@ -66,7 +66,8 @@
           o.script_id AS scriptId,
           o.forward_date AS forwardDate,
           o.forward_end_date AS forwardEndDate,
-          o.order_money AS orderMoney
+          o.order_money AS orderMoney,
+          o.id AS orderId
       FROM
           `order` o
               LEFT JOIN script s ON s.id = o.script_id
@@ -90,7 +91,8 @@
       o.script_id AS scriptId,
       o.forward_date AS forwardDate,
       o.forward_end_date AS forwardEndDate,
-      o.order_money AS orderMoney
+      o.order_money AS orderMoney,
+      o.id AS orderId
       FROM
       `order` o
       LEFT JOIN script s ON s.id = o.script_id

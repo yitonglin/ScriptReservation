@@ -9,6 +9,7 @@ public class OrderScriptVo {
 
     //房间ID
     private String roomId;
+    private String orderId;
 
     //订单创建时间
     private Long orderCreateTime;
