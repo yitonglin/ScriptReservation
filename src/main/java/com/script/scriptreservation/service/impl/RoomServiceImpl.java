@@ -68,4 +68,14 @@ public class RoomServiceImpl implements IRoomService {
         result.setData(rooms);
         return result;
     }
+
+    @Override
+    public Result getRoomById(String id) {
+        Result result = new Result();
+        Room room = roomMapper.selectByPrimaryKey(id);
+        result.setStatus(true);
+        result.setMsg("房间查询成功");
+        result.setCode(ApplicationEnum.SUCCESS.getCode());
+        return result;
+    }
 }

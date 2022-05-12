@@ -7,4 +7,5 @@ public interface IRoomService {
     Result getFreeRoom();
     Result getScriptFreeRoom(LimitPageVo limitPageVo);
     Result getCategoryScriptFreeRoom(String category);
+    Result getRoomById(String id);
 }

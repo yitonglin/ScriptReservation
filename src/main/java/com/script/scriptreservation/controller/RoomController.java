@@ -42,7 +42,10 @@ public class RoomController {
         return roomService.getCategoryScriptFreeRoom(category);
     }
 
-
+    @PostMapping("getRoomById")
+    public Result getRoomById(String id){
+        return roomService.getRoomById(id);
+    }
 
 
 
