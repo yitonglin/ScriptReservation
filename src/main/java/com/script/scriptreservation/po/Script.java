@@ -106,9 +106,6 @@ public class Script {
 
 
 
-    //发行人
-    private String createName;
-
     public String getScriptSunPoint() {
         return scriptSunPoint;
     }
@@ -125,13 +122,6 @@ public class Script {
     }
 
 
-    public String getCreateName() {
-        return createName;
-    }
-
-    public void setCreateName(String createName) {
-        this.createName = createName;
-    }
 
     public Integer getGreatNum() {
         return greatNum;
