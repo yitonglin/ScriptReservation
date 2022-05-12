@@ -57,6 +57,7 @@
       SELECT
           s.script_name AS scriptName,
           o.create_time AS orderCreateTime,
+          o.room_id AS roomId,
           o.order_status AS orderStatus,
           o.refund_time AS refundTime,
           o.forward_num AS orderNumber,
@@ -83,6 +84,7 @@
       o.order_status AS orderStatus,
       o.refund_time AS refundTime,
       o.forward_num AS orderNumber,
+      o.room_id AS roomId,
       o.order_number AS orderNumId,
       o.order_flag AS orderFlag,
       o.script_id AS scriptId,

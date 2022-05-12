@@ -7,7 +7,8 @@ import tk.mybatis.mapper.common.Mapper;
 @org.apache.ibatis.annotations.Mapper
 public interface ScriptArticleMapper extends Mapper<Collection> {
     Integer dataCount(ScriptArticle scriptArticle);
-    Integer dataCount1(ScriptArticle scriptArticle);
     void updateScriptArticle(ScriptArticle scriptArticle);
     void insertScriptArticle(ScriptArticle scriptArticle);
+    ScriptArticle selectScriptArticleInfo(ScriptArticle scriptArticle);
+    void deleteScriptArticle(ScriptArticle scriptArticle);
 }

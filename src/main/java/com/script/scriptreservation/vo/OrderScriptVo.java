@@ -7,6 +7,9 @@ public class OrderScriptVo {
     //剧本名称
     private String scriptName;
 
+    //房间ID
+    private String roomId;
+
     //订单创建时间
     private Long orderCreateTime;
 

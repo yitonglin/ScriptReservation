@@ -4,7 +4,7 @@
     <insert id="insertScriptArticle" parameterType="com.script.scriptreservation.po.ScriptArticle">
         INSERT INTO scriptArticle
         VALUES
-            ( #{ID}, #{userId}, #{scriptId}, #{status} );
+            ( #{ID}, #{userId}, #{scriptId} , #{status});
     </insert>
     <update id="updateScriptArticle" parameterType="com.script.scriptreservation.po.ScriptArticle">
         UPDATE scriptArticle
@@ -23,16 +23,22 @@
         WHERE
             user_id = #{userId}
           AND script_id = #{scriptId}
-            and status = #{status}
     </select>
 
-    <select id="dataCount1" resultType="java.lang.Integer" parameterType="com.script.scriptreservation.po.ScriptArticle">
+    <select id="selectScriptArticleInfo" resultType="com.script.scriptreservation.po.ScriptArticle" parameterType="java.lang.String">
         SELECT
-            COUNT( 1 )
+            *
         FROM
             scriptArticle
         WHERE
             user_id = #{userId}
           AND script_id = #{scriptId}
     </select>
+
+    <delete id="deleteScriptArticle" parameterType="java.lang.String">
+        delete from scriptArticle
+        WHERE
+            user_id = #{userId}
+          AND script_id = #{scriptId}
+    </delete>
 </mapper>

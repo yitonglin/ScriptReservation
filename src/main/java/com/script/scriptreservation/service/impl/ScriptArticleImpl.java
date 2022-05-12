@@ -20,19 +20,19 @@ public class ScriptArticleImpl implements IScriptArticleService {
         Result result = new Result();
         //点赞和点踩一个用户只能共存一个，所以此处应该查询是否存在以用户和剧本为维度的数据存在
         Integer dataCount = scriptArticleMapper.dataCount(scriptArticle);
+        ScriptArticle scriptArticleInfo = scriptArticleMapper.selectScriptArticleInfo(scriptArticle);
         if (dataCount != 0){
-            //此时存在点赞或者点踩数据，此时直接更新状态即可
-            scriptArticleMapper.updateScriptArticle(scriptArticle);
+            if (scriptArticle.getStatus() == scriptArticleInfo.getStatus()) {
+                scriptArticleMapper.deleteScriptArticle(scriptArticle);
+            }
+            else {
+                //此时存在点赞或者点踩数据，此时直接更新状态即可
+                scriptArticleMapper.updateScriptArticle(scriptArticle);
+            }
             result.setStatus(true);
             result.setMsg("您只能点赞或者点踩，此时的状态更新完成");
             result.setCode(ApplicationEnum.SUCCESS.getCode());
         } else if (dataCount == 0){
-            Integer dataCount1 = scriptArticleMapper.dataCount1(scriptArticle);
-            if (dataCount1 != 0){
-                result.setStatus(false);
-                result.setMsg("您只能点赞或者点踩");
-                result.setCode(ApplicationEnum.SUCCESS.getCode());
-            }
             //此时无点赞点踩数据，直接新增数据即可
             scriptArticle.setID(MoreUtils.createId());
             scriptArticleMapper.insertScriptArticle(scriptArticle);
