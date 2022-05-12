@@ -1,8 +1,10 @@
 package com.script.scriptreservation.controller;
 
+import com.script.scriptreservation.po.Order;
 import com.script.scriptreservation.service.IOrderService;
 import com.script.scriptreservation.vo.LimitPageVo;
 import com.script.scriptreservation.vo.Result;
+import com.sun.tools.corba.se.idl.constExpr.Or;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,5 +36,14 @@ public class OrderController {
     @PostMapping("newHistoryOrder")
     public Result newHistoryOrder(LimitPageVo limitPageVo){
         return orderService.newHistoryOrder(limitPageVo);
+    }
+
+    /**
+     * 订单状态修改
+     * @return
+     */
+    @PostMapping("updateOrederStats")
+    public Result updateOrederStats(Order order){
+        return orderService.updateOrederStats(order);
     }
 }

@@ -132,4 +132,16 @@ public class OrderServiceImpl implements IOrderService {
         result.setData(limitPageVo);
         return result;
     }
+
+    @Override
+    public Result updateOrederStats(Order order) {
+        Result result = new Result();
+        orderMapper.updateOrederStats(order);
+        result.setStatus(true);
+        result.setMsg("订单信息更新完成");
+        result.setCode(ApplicationEnum.SUCCESS.getCode());
+        return result;
+    }
+
+
 }

@@ -13,6 +13,6 @@ public interface OrderMapper extends Mapper<Order> {
     Integer getOrderCount(@Param("filed") String filed,@Param("timeCurrent") Long timeCurrent);
     Integer getNewOrderCount(@Param("filed") String filed,@Param("timeCurrent") Long timeCurrent);
     List<OrderScriptVo> newHistoryOrder(@Param("filed") String filed, @Param("i") int i,@Param("len") int len,@Param("timeCurrent") Long timeCurrent);
-
+    void updateOrederStats(Order order);
     Integer createOrder(Order order);
 }

@@ -37,6 +37,12 @@
             #{orderStatus}
         )
     </insert>
+    <update id="updateOrederStats" parameterType="com.script.scriptreservation.po.Order">
+        UPDATE `order`
+        SET `order_status` = #{orderStatus}
+        WHERE
+            id = #{id}
+    </update>
     <select id="getNewOrderCount" resultType="java.lang.Integer">
         SELECT
             count(1)
