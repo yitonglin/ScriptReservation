@@ -12,6 +12,12 @@
   <select id="getFreeRoom" resultType="com.script.scriptreservation.po.Room">
     SELECT * FROM room WHERE status = 1
   </select>
+    <update id="updateRoomByOrder" parameterType="string">
+        UPDATE `room`
+        SET need_number = need_number + 1
+        WHERE
+            id = #{roomId}
+    </update>
     <select id="getScriptFreeRoomCount" resultType="java.lang.Integer">
       SELECT
         COUNT( 1 )

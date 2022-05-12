@@ -13,6 +13,7 @@ public interface RoomMapper extends Mapper<Room> {
     Integer getScriptFreeRoomCount(LimitPageVo limitPageVo);
 
     List<Room> getCategoryScriptFreeRoom(String category);
+    void updateRoomByOrder(String roomId);
 
     List<Room> getScriptIdFreeRoom(String scriptId);
 }

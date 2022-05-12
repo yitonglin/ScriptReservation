@@ -135,6 +135,14 @@ public class OrderServiceImpl implements IOrderService {
 
     @Override
     public Result updateOrederStats(Order order) {
+        //此时如果是拼场的订单则需要对房间所需人数进行加一操作   如果是包场的订单则需要删除房间
+        if (order.getOrderFlag() == 0){
+            //拼场
+            roomMapper.updateRoomByOrder(order.getRoomId());
+        } else if (order.getOrderFlag() == 1){
+            //包场
+            roomMapper.deleteByPrimaryKey(order.getRoomId());
+        }
         Result result = new Result();
         orderMapper.updateOrederStats(order);
         result.setStatus(true);
