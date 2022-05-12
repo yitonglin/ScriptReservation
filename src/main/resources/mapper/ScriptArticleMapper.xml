@@ -23,5 +23,16 @@
         WHERE
             user_id = #{userId}
           AND script_id = #{scriptId}
+            and status = #{status}
+    </select>
+
+    <select id="dataCount1" resultType="java.lang.Integer" parameterType="com.script.scriptreservation.po.ScriptArticle">
+        SELECT
+            COUNT( 1 )
+        FROM
+            scriptArticle
+        WHERE
+            user_id = #{userId}
+          AND script_id = #{scriptId}
     </select>
 </mapper>

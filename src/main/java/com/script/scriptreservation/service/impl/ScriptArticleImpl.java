@@ -27,6 +27,12 @@ public class ScriptArticleImpl implements IScriptArticleService {
             result.setMsg("您只能点赞或者点踩，此时的状态更新完成");
             result.setCode(ApplicationEnum.SUCCESS.getCode());
         } else if (dataCount == 0){
+            Integer dataCount1 = scriptArticleMapper.dataCount1(scriptArticle);
+            if (dataCount1 != 0){
+                result.setStatus(false);
+                result.setMsg("您只能点赞或者点踩");
+                result.setCode(ApplicationEnum.SUCCESS.getCode());
+            }
             //此时无点赞点踩数据，直接新增数据即可
             scriptArticle.setID(MoreUtils.createId());
             scriptArticleMapper.insertScriptArticle(scriptArticle);
