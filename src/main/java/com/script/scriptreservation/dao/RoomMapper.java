@@ -1,5 +1,6 @@
 package com.script.scriptreservation.dao;
 
+import com.script.scriptreservation.po.Order;
 import com.script.scriptreservation.po.Room;
 import com.script.scriptreservation.vo.LimitPageVo;
 import tk.mybatis.mapper.common.Mapper;
@@ -13,7 +14,7 @@ public interface RoomMapper extends Mapper<Room> {
     Integer getScriptFreeRoomCount(LimitPageVo limitPageVo);
 
     List<Room> getCategoryScriptFreeRoom(String category);
-    void updateRoomByOrder(String roomId);
+    void updateRoomByOrder(Order order);
 
     List<Room> getScriptIdFreeRoom(String scriptId);
 }

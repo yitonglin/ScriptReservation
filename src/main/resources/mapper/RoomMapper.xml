@@ -12,9 +12,9 @@
   <select id="getFreeRoom" resultType="com.script.scriptreservation.po.Room">
     SELECT * FROM room WHERE status = 1
   </select>
-    <update id="updateRoomByOrder" parameterType="string">
+    <update id="updateRoomByOrder" parameterType="com.script.scriptreservation.po.Order">
         UPDATE `room`
-        SET need_number = need_number + 1
+        SET need_number = need_number + #{forwardNum}
         WHERE
             id = #{roomId}
     </update>
